@@ -219,6 +219,9 @@ importers:
       '@types/node':
         specifier: ^26.1.1
         version: 26.2.0
+      annict-graphql:
+        specifier: workspace:*
+        version: 'link:'
       bumpp:
         specifier: ^11.1.0
         version: 11.1.0

@@ -3,6 +3,8 @@ catalog:
   vite-plus: 0.2.9
 overrides:
   vite: "catalog:"
+packages:
+  - "."
 peerDependencyRules:
   allowAny:
     - vite
