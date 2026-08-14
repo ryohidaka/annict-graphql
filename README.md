@@ -1,6 +1,15 @@
-# vite-plus-starter
+# annict-graphql
 
-A starter for creating a Vite Plus project.
+[Annict](https://annict.com) GraphQL API client library for JavaScript
+
+> [!WARNING]
+> The Annict GraphQL API is currently in beta.
+
+## Install
+
+```bash
+npm install annict-graphql
+```
 
 ## Contributing
 
