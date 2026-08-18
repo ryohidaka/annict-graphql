@@ -11,6 +11,14 @@
 npm install annict-graphql
 ```
 
+## Usage
+
+```typescript
+import { AnnictClient } from "annict-graphql";
+
+const annict = new AnnictClient("<ANNICT_ACCESS_TOKEN>");
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).

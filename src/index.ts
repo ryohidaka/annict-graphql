@@ -1,0 +1,1 @@
+export { AnnictClient } from "@/client";
