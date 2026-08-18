@@ -31,6 +31,9 @@
     "prepublishOnly": "vp run build",
     "prepare": "vp config"
   },
+  "dependencies": {
+    "graphql-request": "^7.4.0"
+  },
   "devDependencies": {
     "@types/node": "^26.1.1",
     "annict-graphql": "workspace:*",
