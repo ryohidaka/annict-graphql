@@ -17,7 +17,18 @@ npm install annict-graphql
 import { AnnictClient } from "annict-graphql";
 
 const annict = new AnnictClient("<ANNICT_ACCESS_TOKEN>");
+
+const viewer = await annict.Viewer.get();
+console.log(`${viewer.name} (@${viewer.username})`);
+// Output:
+// Shimba, Koji (@shimbaco)
 ```
+
+More examples for every endpoint are available in [`examples/`](./examples):
+
+| Namespace      | Example                                   |
+| -------------- | ----------------------------------------- |
+| `Viewer.get()` | [get-viewer.ts](./examples/get-viewer.ts) |
 
 ## Contributing
 
