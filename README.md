@@ -1,5 +1,7 @@
 # annict-graphql
 
+[![CI](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml/badge.svg)](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml)
+
 [Annict](https://annict.com) GraphQL API client library for JavaScript
 
 > [!WARNING]
