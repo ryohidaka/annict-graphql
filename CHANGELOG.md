@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.3
+
+### Patch Changes
+
+- [`04ce20b`](https://github.com/ryohidaka/annict-graphql/commit/04ce20b88a06db0be69719716b51ad15c60f38f5) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Split generated GraphQL types into a dedicated file and reuse them in operation types to prevent enum conflicts.
+
 ## 0.1.0-beta.2
 
 ### Minor Changes
