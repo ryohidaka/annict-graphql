@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.2
+
+### Minor Changes
+
+- [`13d43a8`](https://github.com/ryohidaka/annict-graphql/commit/13d43a826a842b5bc804b7fbf678bc096ba3464a) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Node.get()` and `Node.getMany()` for fetching any object by its global ID.
+
 ## 0.1.0-beta.1
 
 ### Minor Changes
