@@ -1,6 +1,11 @@
 import "dotenv/config";
 import type { CodegenConfig } from "@graphql-codegen/cli";
 
+const scalars = {
+  DateTime: "string",
+  ID: "string",
+};
+
 const config: CodegenConfig = {
   schema: {
     "https://api.annict.com/graphql": {
@@ -11,13 +16,22 @@ const config: CodegenConfig = {
   },
   documents: ["src/resources/**/*.ts"],
   generates: {
-    "src/generated/graphql.ts": {
-      plugins: ["typescript", "typescript-operations"],
+    "src/generated/types.ts": {
+      plugins: ["typescript"],
       config: {
-        scalars: {
-          DateTime: "string",
-          ID: "string",
-        },
+        scalars,
+        enumsAsTypes: true,
+        strictScalars: true,
+      },
+    },
+    "src/generated/graphql.ts": {
+      preset: "import-types",
+      presetConfig: {
+        typesPath: "./types",
+      },
+      plugins: ["typescript-operations"],
+      config: {
+        scalars,
         enumsAsTypes: true,
         strictScalars: true,
       },
