@@ -29,10 +29,11 @@ console.log(`${viewer.name} (@${viewer.username})`);
 
 More examples for every endpoint are available in [`examples/`](./examples):
 
-| Namespace      | Example                                   |
-| -------------- | ----------------------------------------- |
-| `Viewer.get()` | [get-viewer.ts](./examples/get-viewer.ts) |
-| `User.get()`   | [get-user.ts](./examples/get-user.ts)     |
+| Namespace                       | Example                                   |
+| ------------------------------- | ----------------------------------------- |
+| `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts) |
+| `User.get()`                    | [get-user.ts](./examples/get-user.ts)     |
+| `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)     |
 
 ## Contributing
 

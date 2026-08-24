@@ -1,6 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 import { createViewerResource } from "@/resources/viewer";
 import { createUserResource } from "@/resources/user";
+import { createNodeResource } from "@/resources/node";
 
 const ANNICT_ENDPOINT = "https://api.annict.com/graphql";
 
@@ -10,6 +11,7 @@ const ANNICT_ENDPOINT = "https://api.annict.com/graphql";
 export class AnnictClient {
   readonly Viewer: ReturnType<typeof createViewerResource>;
   readonly User: ReturnType<typeof createUserResource>;
+  readonly Node: ReturnType<typeof createNodeResource>;
 
   /**
    * @param accessToken - Annict personal access token
@@ -21,5 +23,6 @@ export class AnnictClient {
 
     this.Viewer = createViewerResource(client);
     this.User = createUserResource(client);
+    this.Node = createNodeResource(client);
   }
 }

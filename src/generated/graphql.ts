@@ -1313,6 +1313,65 @@ export type UserFieldsFragment = {
   viewerIsFollowing: boolean;
 };
 
+export type NodeQueryVariables = Exact<{
+  id: string;
+}>;
+
+export type NodeQuery = {
+  node:
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | null;
+};
+
+export type NodesQueryVariables = Exact<{
+  ids: Array<string> | string;
+}>;
+
+export type NodesQuery = {
+  nodes: Array<
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | { id: string }
+    | null
+  >;
+};
+
 export type UserQueryVariables = Exact<{
   username: string;
 }>;
