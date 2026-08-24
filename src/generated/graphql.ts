@@ -1313,6 +1313,36 @@ export type UserFieldsFragment = {
   viewerIsFollowing: boolean;
 };
 
+export type UserQueryVariables = Exact<{
+  username: string;
+}>;
+
+export type UserQuery = {
+  user: {
+    id: string;
+    annictId: number;
+    name: string;
+    username: string;
+    avatarUrl: string | null;
+    backgroundImageUrl: string | null;
+    description: string;
+    url: string | null;
+    email: string | null;
+    createdAt: string;
+    followersCount: number;
+    followingsCount: number;
+    notificationsCount: number | null;
+    recordsCount: number;
+    wannaWatchCount: number;
+    watchingCount: number;
+    watchedCount: number;
+    onHoldCount: number;
+    stopWatchingCount: number;
+    viewerCanFollow: boolean;
+    viewerIsFollowing: boolean;
+  } | null;
+};
+
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ViewerQuery = {

@@ -32,6 +32,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | Namespace      | Example                                   |
 | -------------- | ----------------------------------------- |
 | `Viewer.get()` | [get-viewer.ts](./examples/get-viewer.ts) |
+| `User.get()`   | [get-user.ts](./examples/get-user.ts)     |
 
 ## Contributing
 
