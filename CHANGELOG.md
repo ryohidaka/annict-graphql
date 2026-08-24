@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.4
+
+### Minor Changes
+
+- [`62bddcf`](https://github.com/ryohidaka/annict-graphql/commit/62bddcfbafebb85df0c293b9c9afb340b00fa3dd) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Work.search()` for searching works by title, season, or Annict ID, with sort order support via `WORK_ORDER_FIELD`.
+
 ## 0.1.0-beta.3
 
 ### Patch Changes
