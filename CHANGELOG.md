@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.1
+
+### Minor Changes
+
+- [`d5b3764`](https://github.com/ryohidaka/annict-graphql/commit/d5b3764e33fda497ceb8524426935c4a4dca80da) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `User.get()` for fetching a user by username.
+
 ## 0.1.0-beta.0
 
 ### Minor Changes
