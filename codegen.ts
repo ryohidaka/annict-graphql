@@ -18,7 +18,7 @@ const config: CodegenConfig = {
           DateTime: "string",
           ID: "string",
         },
-        enumsAsTypes: false,
+        enumsAsTypes: true,
         strictScalars: true,
       },
     },
