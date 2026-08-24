@@ -23,3 +23,31 @@ export const USER_FIELDS_FRAGMENT = /* GraphQL */ `
     viewerIsFollowing
   }
 `;
+
+export const WORK_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment WorkFields on Work {
+    id
+    annictId
+    title
+    titleEn
+    titleKana
+    titleRo
+    media
+    seasonName
+    seasonYear
+    episodesCount
+    noEpisodes
+    watchersCount
+    reviewsCount
+    satisfactionRate
+    malAnimeId
+    syobocalTid
+    officialSiteUrl
+    officialSiteUrlEn
+    wikipediaUrl
+    wikipediaUrlEn
+    twitterUsername
+    twitterHashtag
+    viewerStatusState
+  }
+`;
