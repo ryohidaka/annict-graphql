@@ -47,6 +47,10 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Me.Review.update()`            | [update-review.ts](./examples/update-review.ts)               |
 | `Me.Review.delete()`            | [delete-review.ts](./examples/delete-review.ts)               |
 
+## Migrating from annict.js
+
+If you're coming from [annict.js](https://www.npmjs.com/package/annict) (a REST API client, no longer maintained), see [MIGRATION.md](./MIGRATION.md) for a mapping of methods and parameters.
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
