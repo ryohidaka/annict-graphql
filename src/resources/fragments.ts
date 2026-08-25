@@ -51,3 +51,19 @@ export const WORK_FIELDS_FRAGMENT = /* GraphQL */ `
     viewerStatusState
   }
 `;
+
+export const EPISODE_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment EpisodeFields on Episode {
+    id
+    annictId
+    title
+    number
+    numberText
+    sortNumber
+    recordsCount
+    recordCommentsCount
+    satisfactionRate
+    viewerDidTrack
+    viewerRecordsCount
+  }
+`;

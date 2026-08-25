@@ -6,6 +6,13 @@ export type Incremental<T> =
   | { [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never };
 import * as Types from "./types";
 
+export type EpisodeOrder = {
+  direction: OrderDirection;
+  field: EpisodeOrderField;
+};
+
+export type EpisodeOrderField = "CREATED_AT" | "SORT_NUMBER";
+
 /** Media of anime */
 export type Media = "MOVIE" | "OTHER" | "OVA" | "TV" | "WEB";
 
@@ -28,6 +35,35 @@ export type WorkOrder = {
 };
 
 export type WorkOrderField = "CREATED_AT" | "SEASON" | "WATCHERS_COUNT";
+
+export type SearchEpisodesQueryVariables = Exact<{
+  annictIds?: Array<number> | number | null | undefined;
+  orderBy?: Types.EpisodeOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type SearchEpisodesQuery = {
+  searchEpisodes: {
+    edges: Array<{
+      node: {
+        id: string;
+        annictId: number;
+        title: string | null;
+        number: number | null;
+        numberText: string | null;
+        sortNumber: number;
+        recordsCount: number;
+        recordCommentsCount: number;
+        satisfactionRate: number | null;
+        viewerDidTrack: boolean;
+        viewerRecordsCount: number;
+      } | null;
+    } | null> | null;
+  } | null;
+};
 
 export type UserFieldsFragment = {
   id: string;
@@ -77,6 +113,20 @@ export type WorkFieldsFragment = {
   twitterUsername: string | null;
   twitterHashtag: string | null;
   viewerStatusState: Types.StatusState | null;
+};
+
+export type EpisodeFieldsFragment = {
+  id: string;
+  annictId: number;
+  title: string | null;
+  number: number | null;
+  numberText: string | null;
+  sortNumber: number;
+  recordsCount: number;
+  recordCommentsCount: number;
+  satisfactionRate: number | null;
+  viewerDidTrack: boolean;
+  viewerRecordsCount: number;
 };
 
 export type NodeQueryVariables = Exact<{
