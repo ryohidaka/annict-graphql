@@ -5,20 +5,20 @@
 ![NPM Version](https://img.shields.io/npm/v/annict-graphql?logo=npm)
 [![CI](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml/badge.svg)](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/ryohidaka/annict-graphql/graph/badge.svg?token=bEfNqlWhEr)](https://codecov.io/gh/ryohidaka/annict-graphql)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-[Annict](https://annict.com) GraphQL API client library for JavaScript
+[Annict](https://annict.com) の GraphQL API を利用する JavaScript クライアントライブラリです。
 
 > [!WARNING]
-> The Annict GraphQL API is currently in beta.
+> Annict GraphQL API は現在ベータ版です。
 
-## Install
+## インストール
 
 ```bash
 npm install annict-graphql
 ```
 
-## Usage
+## 使い方
 
 ```typescript
 import { AnnictClient } from "annict-graphql";
@@ -27,11 +27,11 @@ const annict = new AnnictClient("<ANNICT_ACCESS_TOKEN>");
 
 const viewer = await annict.Viewer.get();
 console.log(`${viewer.name} (@${viewer.username})`);
-// Output:
+// 出力:
 // Shimba, Koji (@shimbaco)
 ```
 
-More examples for every endpoint are available in [`examples/`](./examples):
+すべてのエンドポイントの使用例は [`examples/`](./examples) にあります。
 
 | Namespace                       | Example                                                       |
 | ------------------------------- | ------------------------------------------------------------- |
@@ -51,14 +51,14 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Me.Review.update()`            | [update-review.ts](./examples/update-review.ts)               |
 | `Me.Review.delete()`            | [delete-review.ts](./examples/delete-review.ts)               |
 
-## Migrating from annict.js
+## annict.js からの移行
 
-If you're coming from [annict.js](https://www.npmjs.com/package/annict) (a REST API client, no longer maintained), see [MIGRATION.md](./MIGRATION.md) for a mapping of methods and parameters.
+メンテナンスが終了している REST API クライアント [annict.js](https://www.npmjs.com/package/annict) から移行する場合は、メソッドとパラメーターの対応表を [MIGRATION.md](./MIGRATION.md) で確認できます。
 
-## Contributing
+## コントリビュート
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
+[CONTRIBUTING.md](./CONTRIBUTING.md) を参照してください。
 
-## License
+## ライセンス
 
 [MIT](./LICENSE)
