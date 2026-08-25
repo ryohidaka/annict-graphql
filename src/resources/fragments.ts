@@ -67,3 +67,34 @@ export const EPISODE_FIELDS_FRAGMENT = /* GraphQL */ `
     viewerRecordsCount
   }
 `;
+
+export const CHARACTER_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment CharacterFields on Character {
+    id
+    annictId
+    name
+    nameEn
+    nameKana
+    nickname
+    nicknameEn
+    age
+    ageEn
+    birthday
+    birthdayEn
+    bloodType
+    bloodTypeEn
+    height
+    heightEn
+    weight
+    weightEn
+    nationality
+    nationalityEn
+    occupation
+    occupationEn
+    description
+    descriptionEn
+    descriptionSource
+    descriptionSourceEn
+    favoriteCharactersCount
+  }
+`;

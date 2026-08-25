@@ -29,13 +29,14 @@ console.log(`${viewer.name} (@${viewer.username})`);
 
 More examples for every endpoint are available in [`examples/`](./examples):
 
-| Namespace                       | Example                                             |
-| ------------------------------- | --------------------------------------------------- |
-| `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts)           |
-| `User.get()`                    | [get-user.ts](./examples/get-user.ts)               |
-| `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)               |
-| `Work.search()`                 | [search-works.ts](./examples/search-works.ts)       |
-| `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts) |
+| Namespace                       | Example                                                 |
+| ------------------------------- | ------------------------------------------------------- |
+| `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts)               |
+| `User.get()`                    | [get-user.ts](./examples/get-user.ts)                   |
+| `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                   |
+| `Work.search()`                 | [search-works.ts](./examples/search-works.ts)           |
+| `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)     |
+| `Character.search()`            | [search-characters.ts](./examples/search-characters.ts) |
 
 ## Contributing
 

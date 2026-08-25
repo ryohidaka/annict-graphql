@@ -6,6 +6,13 @@ export type Incremental<T> =
   | { [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never };
 import * as Types from "./types";
 
+export type CharacterOrder = {
+  direction: OrderDirection;
+  field: CharacterOrderField;
+};
+
+export type CharacterOrderField = "CREATED_AT" | "FAVORITE_CHARACTERS_COUNT";
+
 export type EpisodeOrder = {
   direction: OrderDirection;
   field: EpisodeOrderField;
@@ -35,6 +42,51 @@ export type WorkOrder = {
 };
 
 export type WorkOrderField = "CREATED_AT" | "SEASON" | "WATCHERS_COUNT";
+
+export type SearchCharactersQueryVariables = Exact<{
+  names?: Array<string> | string | null | undefined;
+  annictIds?: Array<number> | number | null | undefined;
+  orderBy?: Types.CharacterOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type SearchCharactersQuery = {
+  searchCharacters: {
+    edges: Array<{
+      node: {
+        id: string;
+        annictId: number;
+        name: string;
+        nameEn: string;
+        nameKana: string;
+        nickname: string;
+        nicknameEn: string;
+        age: string;
+        ageEn: string;
+        birthday: string;
+        birthdayEn: string;
+        bloodType: string;
+        bloodTypeEn: string;
+        height: string;
+        heightEn: string;
+        weight: string;
+        weightEn: string;
+        nationality: string;
+        nationalityEn: string;
+        occupation: string;
+        occupationEn: string;
+        description: string;
+        descriptionEn: string;
+        descriptionSource: string;
+        descriptionSourceEn: string;
+        favoriteCharactersCount: number;
+      } | null;
+    } | null> | null;
+  } | null;
+};
 
 export type SearchEpisodesQueryVariables = Exact<{
   annictIds?: Array<number> | number | null | undefined;
@@ -127,6 +179,35 @@ export type EpisodeFieldsFragment = {
   satisfactionRate: number | null;
   viewerDidTrack: boolean;
   viewerRecordsCount: number;
+};
+
+export type CharacterFieldsFragment = {
+  id: string;
+  annictId: number;
+  name: string;
+  nameEn: string;
+  nameKana: string;
+  nickname: string;
+  nicknameEn: string;
+  age: string;
+  ageEn: string;
+  birthday: string;
+  birthdayEn: string;
+  bloodType: string;
+  bloodTypeEn: string;
+  height: string;
+  heightEn: string;
+  weight: string;
+  weightEn: string;
+  nationality: string;
+  nationalityEn: string;
+  occupation: string;
+  occupationEn: string;
+  description: string;
+  descriptionEn: string;
+  descriptionSource: string;
+  descriptionSourceEn: string;
+  favoriteCharactersCount: number;
 };
 
 export type NodeQueryVariables = Exact<{

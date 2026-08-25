@@ -1,4 +1,9 @@
-import type { EpisodeOrderField, OrderDirection, WorkOrderField } from "@/generated/types";
+import type {
+  CharacterOrderField,
+  EpisodeOrderField,
+  OrderDirection,
+  WorkOrderField,
+} from "@/generated/types";
 
 export const ORDER_DIRECTION = {
   Asc: "ASC",
@@ -15,3 +20,8 @@ export const EPISODE_ORDER_FIELD = {
   CreatedAt: "CREATED_AT",
   SortNumber: "SORT_NUMBER",
 } as const satisfies Record<string, EpisodeOrderField>;
+
+export const CHARACTER_ORDER_FIELD = {
+  CreatedAt: "CREATED_AT",
+  FavoriteCharactersCount: "FAVORITE_CHARACTERS_COUNT",
+} as const satisfies Record<string, CharacterOrderField>;
