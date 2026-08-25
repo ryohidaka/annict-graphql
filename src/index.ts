@@ -16,6 +16,7 @@ export {
   ORGANIZATION_ORDER_FIELD,
   ORDER_DIRECTION,
   RATING_STATE,
+  STATUS_STATE,
 } from "@/resources/enums";
 export type {
   WorkOrderField,
@@ -25,4 +26,5 @@ export type {
   OrganizationOrderField,
   OrderDirection,
   RatingState,
+  StatusState,
 } from "@/generated/types";

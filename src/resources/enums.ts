@@ -5,6 +5,7 @@ import type {
   OrganizationOrderField,
   PersonOrderField,
   RatingState,
+  StatusState,
   WorkOrderField,
 } from "@/generated/types";
 
@@ -45,3 +46,12 @@ export const RATING_STATE = {
   Average: "AVERAGE",
   Bad: "BAD",
 } as const satisfies Record<string, RatingState>;
+
+export const STATUS_STATE = {
+  WannaWatch: "WANNA_WATCH",
+  Watching: "WATCHING",
+  Watched: "WATCHED",
+  OnHold: "ON_HOLD",
+  StopWatching: "STOP_WATCHING",
+  NoState: "NO_STATE",
+} as const satisfies Record<string, StatusState>;

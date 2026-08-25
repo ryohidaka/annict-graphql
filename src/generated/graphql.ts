@@ -338,6 +338,41 @@ export type DeleteRecordMutationVariables = Exact<{
 
 export type DeleteRecordMutation = { deleteRecord: { episode: { id: string } | null } | null };
 
+export type UpdateStatusMutationVariables = Exact<{
+  workId: string;
+  state: Types.StatusState;
+}>;
+
+export type UpdateStatusMutation = {
+  updateStatus: {
+    work: {
+      id: string;
+      annictId: number;
+      title: string;
+      titleEn: string | null;
+      titleKana: string | null;
+      titleRo: string | null;
+      media: Types.Media;
+      seasonName: Types.SeasonName | null;
+      seasonYear: number | null;
+      episodesCount: number;
+      noEpisodes: boolean;
+      watchersCount: number;
+      reviewsCount: number;
+      satisfactionRate: number | null;
+      malAnimeId: string | null;
+      syobocalTid: number | null;
+      officialSiteUrl: string | null;
+      officialSiteUrlEn: string | null;
+      wikipediaUrl: string | null;
+      wikipediaUrlEn: string | null;
+      twitterUsername: string | null;
+      twitterHashtag: string | null;
+      viewerStatusState: Types.StatusState | null;
+    } | null;
+  } | null;
+};
+
 export type NodeQueryVariables = Exact<{
   id: string;
 }>;
