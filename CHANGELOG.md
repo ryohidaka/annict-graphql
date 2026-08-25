@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.6
+
+### Minor Changes
+
+- [`deb068f`](https://github.com/ryohidaka/annict-graphql/commit/deb068fb3c7594cea789a16e0fd73a055f28a5d0) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Character.search()` for searching characters by name or Annict ID, with sort order support via `CHARACTER_ORDER_FIELD`.
+
 ## 0.1.0-beta.5
 
 ### Minor Changes
