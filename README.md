@@ -40,6 +40,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Person.search()`               | [search-people.ts](./examples/search-people.ts)               |
 | `Organization.search()`         | [search-organizations.ts](./examples/search-organizations.ts) |
 | `Me.Record.create()`            | [create-record.ts](./examples/create-record.ts)               |
+| `Me.Record.update()`            | [update-record.ts](./examples/update-record.ts)               |
 
 ## Contributing
 

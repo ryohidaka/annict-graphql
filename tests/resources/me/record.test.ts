@@ -54,3 +54,40 @@ describe("Me.Record.create", () => {
     expect(result).toBeNull();
   });
 });
+
+describe("Me.Record.update", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns the updated record", async () => {
+    const mockRecord = {
+      id: "UmVjb3JkLTE=",
+      annictId: 1,
+      comment: "Updated comment",
+      commentsCount: 0,
+      rating: null,
+      ratingState: "GOOD",
+      likesCount: 0,
+      facebookClickCount: 0,
+      twitterClickCount: 0,
+      modified: true,
+      createdAt: "2026-08-13T00:00:00Z",
+      updatedAt: "2026-08-13T00:01:00Z",
+    };
+
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      updateRecord: { record: mockRecord },
+    });
+
+    const record = createRecordResource(client);
+    const result = await record.update({
+      recordId: "UmVjb3JkLTE=",
+      comment: "Updated comment",
+      ratingState: "GOOD",
+    });
+
+    expect(result).toEqual(mockRecord);
+  });
+});

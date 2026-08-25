@@ -307,6 +307,31 @@ export type CreateRecordMutation = {
   } | null;
 };
 
+export type UpdateRecordMutationVariables = Exact<{
+  recordId: string;
+  comment?: string | null | undefined;
+  ratingState?: Types.RatingState | null | undefined;
+}>;
+
+export type UpdateRecordMutation = {
+  updateRecord: {
+    record: {
+      id: string;
+      annictId: number;
+      comment: string | null;
+      commentsCount: number;
+      rating: number | null;
+      ratingState: Types.RatingState | null;
+      likesCount: number;
+      facebookClickCount: number;
+      twitterClickCount: number;
+      modified: boolean;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+  } | null;
+};
+
 export type NodeQueryVariables = Exact<{
   id: string;
 }>;

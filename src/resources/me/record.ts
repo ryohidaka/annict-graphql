@@ -2,6 +2,8 @@ import type { GraphQLClient } from "graphql-request";
 import type {
   CreateRecordMutation,
   CreateRecordMutationVariables,
+  UpdateRecordMutation,
+  UpdateRecordMutationVariables,
   RecordFieldsFragment,
 } from "@/generated/graphql";
 import type { RatingState } from "@/generated/types";
@@ -32,6 +34,17 @@ const CREATE_RECORD_MUTATION = /* GraphQL */ `
   }
 `;
 
+const UPDATE_RECORD_MUTATION = /* GraphQL */ `
+  ${RECORD_FIELDS_FRAGMENT}
+  mutation UpdateRecord($recordId: ID!, $comment: String, $ratingState: RatingState) {
+    updateRecord(input: { recordId: $recordId, comment: $comment, ratingState: $ratingState }) {
+      record {
+        ...RecordFields
+      }
+    }
+  }
+`;
+
 export type AnnictRecord = RecordFieldsFragment;
 
 export interface CreateRecordParams {
@@ -45,6 +58,15 @@ export interface CreateRecordParams {
   shareTwitter?: boolean;
   /** Share this record on Facebook */
   shareFacebook?: boolean;
+}
+
+export interface UpdateRecordParams {
+  /** Global ID of the record to update */
+  recordId: string;
+  /** New comment */
+  comment?: string;
+  /** New rating state */
+  ratingState?: RatingState;
 }
 
 export const createRecordResource = (client: GraphQLClient) => ({
@@ -62,5 +84,21 @@ export const createRecordResource = (client: GraphQLClient) => ({
       variables,
     );
     return createRecord?.record ?? null;
+  },
+
+  /**
+   * Updates an existing record.
+   *
+   * @param params - Record ID and fields to update
+   * @returns The updated record, or `null` if the update failed
+   * @see https://developers.annict.com/docs/graphql-api/beta/reference/mutations/update-record
+   */
+  async update(params: UpdateRecordParams): Promise<AnnictRecord | null> {
+    const variables: UpdateRecordMutationVariables = params;
+    const { updateRecord } = await client.request<UpdateRecordMutation>(
+      UPDATE_RECORD_MUTATION,
+      variables,
+    );
+    return updateRecord?.record ?? null;
   },
 });
