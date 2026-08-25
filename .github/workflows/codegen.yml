@@ -1,0 +1,43 @@
+name: Codegen
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+jobs:
+  update-types:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Vite+
+        uses: voidzero-dev/setup-vp@v1
+        with:
+          cache: true
+          run-install: true
+
+      - name: Run codegen
+        run: vpr codegen
+        env:
+          ANNICT_ACCESS_TOKEN: ${{ secrets.ANNICT_ACCESS_TOKEN }}
+
+      - name: Run tests
+        run: vpr test
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "chore: update generated types from schema"
+          title: "chore: update generated types from schema"
+          body: |
+            Automated update of `src/generated/` based on the current
+            Annict GraphQL schema.
+          branch: chore/update-generated-types
+          delete-branch: true
+          reviewers: ryohidaka
+          sign-commits: true
