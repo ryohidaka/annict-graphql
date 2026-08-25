@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.5
+
+### Minor Changes
+
+- [`4e8ab0f`](https://github.com/ryohidaka/annict-graphql/commit/4e8ab0ff65cb368fdba9967c5a7ef9b7795e575e) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Episode.search()` for searching episodes by Annict ID, with sort order support via `EPISODE_ORDER_FIELD`.
+
 ## 0.1.0-beta.4
 
 ### Minor Changes
