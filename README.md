@@ -37,6 +37,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)           |
 | `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)     |
 | `Character.search()`            | [search-characters.ts](./examples/search-characters.ts) |
+| `Person.search()`               | [search-people.ts](./examples/search-people.ts)         |
 
 ## Contributing
 

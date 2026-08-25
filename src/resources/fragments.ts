@@ -98,3 +98,28 @@ export const CHARACTER_FIELDS_FRAGMENT = /* GraphQL */ `
     favoriteCharactersCount
   }
 `;
+
+export const PERSON_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment PersonFields on Person {
+    id
+    annictId
+    name
+    nameEn
+    nameKana
+    nickname
+    nicknameEn
+    birthday
+    bloodType
+    height
+    genderText
+    castsCount
+    staffsCount
+    favoritePeopleCount
+    url
+    urlEn
+    wikipediaUrl
+    wikipediaUrlEn
+    twitterUsername
+    twitterUsernameEn
+  }
+`;

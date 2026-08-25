@@ -5,6 +5,7 @@ import { createNodeResource } from "@/resources/node";
 import { createWorkResource } from "@/resources/work";
 import { createEpisodeResource } from "@/resources/episode";
 import { createCharacterResource } from "@/resources/character";
+import { createPersonResource } from "@/resources/person";
 
 const ANNICT_ENDPOINT = "https://api.annict.com/graphql";
 
@@ -18,6 +19,7 @@ export class AnnictClient {
   readonly Work: ReturnType<typeof createWorkResource>;
   readonly Episode: ReturnType<typeof createEpisodeResource>;
   readonly Character: ReturnType<typeof createCharacterResource>;
+  readonly Person: ReturnType<typeof createPersonResource>;
 
   /**
    * @param accessToken - Annict personal access token
@@ -33,5 +35,6 @@ export class AnnictClient {
     this.Work = createWorkResource(client);
     this.Episode = createEpisodeResource(client);
     this.Character = createCharacterResource(client);
+    this.Person = createPersonResource(client);
   }
 }

@@ -2,6 +2,7 @@ import type {
   CharacterOrderField,
   EpisodeOrderField,
   OrderDirection,
+  PersonOrderField,
   WorkOrderField,
 } from "@/generated/types";
 
@@ -25,3 +26,8 @@ export const CHARACTER_ORDER_FIELD = {
   CreatedAt: "CREATED_AT",
   FavoriteCharactersCount: "FAVORITE_CHARACTERS_COUNT",
 } as const satisfies Record<string, CharacterOrderField>;
+
+export const PERSON_ORDER_FIELD = {
+  CreatedAt: "CREATED_AT",
+  FavoritePeopleCount: "FAVORITE_PEOPLE_COUNT",
+} as const satisfies Record<string, PersonOrderField>;

@@ -25,6 +25,13 @@ export type Media = "MOVIE" | "OTHER" | "OVA" | "TV" | "WEB";
 
 export type OrderDirection = "ASC" | "DESC";
 
+export type PersonOrder = {
+  direction: OrderDirection;
+  field: PersonOrderField;
+};
+
+export type PersonOrderField = "CREATED_AT" | "FAVORITE_PEOPLE_COUNT";
+
 /** Season name */
 export type SeasonName = "AUTUMN" | "SPRING" | "SUMMER" | "WINTER";
 
@@ -210,6 +217,29 @@ export type CharacterFieldsFragment = {
   favoriteCharactersCount: number;
 };
 
+export type PersonFieldsFragment = {
+  id: string;
+  annictId: number;
+  name: string;
+  nameEn: string;
+  nameKana: string;
+  nickname: string | null;
+  nicknameEn: string;
+  birthday: string | null;
+  bloodType: string | null;
+  height: string | null;
+  genderText: string | null;
+  castsCount: number;
+  staffsCount: number;
+  favoritePeopleCount: number;
+  url: string | null;
+  urlEn: string;
+  wikipediaUrl: string | null;
+  wikipediaUrlEn: string;
+  twitterUsername: string | null;
+  twitterUsernameEn: string;
+};
+
 export type NodeQueryVariables = Exact<{
   id: string;
 }>;
@@ -267,6 +297,45 @@ export type NodesQuery = {
     | { id: string }
     | null
   >;
+};
+
+export type SearchPeopleQueryVariables = Exact<{
+  names?: Array<string> | string | null | undefined;
+  annictIds?: Array<number> | number | null | undefined;
+  orderBy?: Types.PersonOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type SearchPeopleQuery = {
+  searchPeople: {
+    edges: Array<{
+      node: {
+        id: string;
+        annictId: number;
+        name: string;
+        nameEn: string;
+        nameKana: string;
+        nickname: string | null;
+        nicknameEn: string;
+        birthday: string | null;
+        bloodType: string | null;
+        height: string | null;
+        genderText: string | null;
+        castsCount: number;
+        staffsCount: number;
+        favoritePeopleCount: number;
+        url: string | null;
+        urlEn: string;
+        wikipediaUrl: string | null;
+        wikipediaUrlEn: string;
+        twitterUsername: string | null;
+        twitterUsernameEn: string;
+      } | null;
+    } | null> | null;
+  } | null;
 };
 
 export type UserQueryVariables = Exact<{
