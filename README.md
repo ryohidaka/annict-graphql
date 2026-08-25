@@ -43,6 +43,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Me.Record.update()`            | [update-record.ts](./examples/update-record.ts)               |
 | `Me.Record.delete()`            | [delete-record.ts](./examples/delete-record.ts)               |
 | `Me.Status.update()`            | [update-status.ts](./examples/update-status.ts)               |
+| `Me.Review.create()`            | [create-review.ts](./examples/create-review.ts)               |
 
 ## Contributing
 

@@ -158,3 +158,22 @@ export const RECORD_FIELDS_FRAGMENT = /* GraphQL */ `
     updatedAt
   }
 `;
+
+export const REVIEW_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment ReviewFields on Review {
+    id
+    annictId
+    title
+    body
+    ratingOverallState
+    ratingAnimationState
+    ratingMusicState
+    ratingStoryState
+    ratingCharacterState
+    likesCount
+    impressionsCount
+    modifiedAt
+    createdAt
+    updatedAt
+  }
+`;

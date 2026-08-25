@@ -280,6 +280,23 @@ export type RecordFieldsFragment = {
   updatedAt: string;
 };
 
+export type ReviewFieldsFragment = {
+  id: string;
+  annictId: number;
+  title: string | null;
+  body: string;
+  ratingOverallState: Types.RatingState | null;
+  ratingAnimationState: Types.RatingState | null;
+  ratingMusicState: Types.RatingState | null;
+  ratingStoryState: Types.RatingState | null;
+  ratingCharacterState: Types.RatingState | null;
+  likesCount: number;
+  impressionsCount: number;
+  modifiedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CreateRecordMutationVariables = Exact<{
   episodeId: string;
   comment?: string | null | undefined;
@@ -337,6 +354,40 @@ export type DeleteRecordMutationVariables = Exact<{
 }>;
 
 export type DeleteRecordMutation = { deleteRecord: { episode: { id: string } | null } | null };
+
+export type CreateReviewMutationVariables = Exact<{
+  workId: string;
+  title?: string | null | undefined;
+  body: string;
+  ratingOverallState?: Types.RatingState | null | undefined;
+  ratingAnimationState?: Types.RatingState | null | undefined;
+  ratingMusicState?: Types.RatingState | null | undefined;
+  ratingStoryState?: Types.RatingState | null | undefined;
+  ratingCharacterState?: Types.RatingState | null | undefined;
+  shareTwitter?: boolean | null | undefined;
+  shareFacebook?: boolean | null | undefined;
+}>;
+
+export type CreateReviewMutation = {
+  createReview: {
+    review: {
+      id: string;
+      annictId: number;
+      title: string | null;
+      body: string;
+      ratingOverallState: Types.RatingState | null;
+      ratingAnimationState: Types.RatingState | null;
+      ratingMusicState: Types.RatingState | null;
+      ratingStoryState: Types.RatingState | null;
+      ratingCharacterState: Types.RatingState | null;
+      likesCount: number;
+      impressionsCount: number;
+      modifiedAt: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+  } | null;
+};
 
 export type UpdateStatusMutationVariables = Exact<{
   workId: string;

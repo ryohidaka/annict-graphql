@@ -8,6 +8,7 @@ export type { AnnictCharacter } from "@/resources/character";
 export type { AnnictPerson } from "@/resources/person";
 export type { AnnictOrganization } from "@/resources/organization";
 export type { AnnictRecord } from "@/resources/me/record";
+export type { AnnictReview } from "@/resources/me/review";
 export {
   WORK_ORDER_FIELD,
   EPISODE_ORDER_FIELD,
