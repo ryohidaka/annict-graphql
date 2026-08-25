@@ -4,6 +4,8 @@ import type {
   CreateRecordMutationVariables,
   UpdateRecordMutation,
   UpdateRecordMutationVariables,
+  DeleteRecordMutation,
+  DeleteRecordMutationVariables,
   RecordFieldsFragment,
 } from "@/generated/graphql";
 import type { RatingState } from "@/generated/types";
@@ -40,6 +42,16 @@ const UPDATE_RECORD_MUTATION = /* GraphQL */ `
     updateRecord(input: { recordId: $recordId, comment: $comment, ratingState: $ratingState }) {
       record {
         ...RecordFields
+      }
+    }
+  }
+`;
+
+const DELETE_RECORD_MUTATION = /* GraphQL */ `
+  mutation DeleteRecord($recordId: ID!) {
+    deleteRecord(input: { recordId: $recordId }) {
+      episode {
+        id
       }
     }
   }
@@ -100,5 +112,24 @@ export const createRecordResource = (client: GraphQLClient) => ({
       variables,
     );
     return updateRecord?.record ?? null;
+  },
+
+  /**
+   * Deletes a record.
+   *
+   * Note: `DeleteRecordPayload` returns the parent `episode`, not the
+   * deleted record itself.
+   *
+   * @param recordId - Global ID of the record to delete
+   * @returns The parent episode's ID, or `null` if the deletion failed
+   * @see https://developers.annict.com/docs/graphql-api/beta/reference/mutations/delete-record
+   */
+  async delete(recordId: string): Promise<{ id: string } | null> {
+    const variables: DeleteRecordMutationVariables = { recordId };
+    const { deleteRecord } = await client.request<DeleteRecordMutation>(
+      DELETE_RECORD_MUTATION,
+      variables,
+    );
+    return deleteRecord?.episode ?? null;
   },
 });

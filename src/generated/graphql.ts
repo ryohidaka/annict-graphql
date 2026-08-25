@@ -332,6 +332,12 @@ export type UpdateRecordMutation = {
   } | null;
 };
 
+export type DeleteRecordMutationVariables = Exact<{
+  recordId: string;
+}>;
+
+export type DeleteRecordMutation = { deleteRecord: { episode: { id: string } | null } | null };
+
 export type NodeQueryVariables = Exact<{
   id: string;
 }>;

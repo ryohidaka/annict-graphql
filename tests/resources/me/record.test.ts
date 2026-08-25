@@ -91,3 +91,33 @@ describe("Me.Record.update", () => {
     expect(result).toEqual(mockRecord);
   });
 });
+
+describe("Me.Record.delete", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns the parent episode", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      deleteRecord: { episode: { id: "RXBpc29kZS0x" } },
+    });
+
+    const record = createRecordResource(client);
+    const result = await record.delete("UmVjb3JkLTE=");
+
+    expect(result).toEqual({ id: "RXBpc29kZS0x" });
+  });
+
+  it("returns null when deletion fails", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      deleteRecord: { episode: null },
+    });
+
+    const record = createRecordResource(client);
+    const result = await record.delete("invalid");
+
+    expect(result).toBeNull();
+  });
+});
