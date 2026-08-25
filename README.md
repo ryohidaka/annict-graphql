@@ -2,6 +2,7 @@
 
 ![NPM Version](https://img.shields.io/npm/v/annict-graphql?logo=npm)
 [![CI](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml/badge.svg)](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [Annict](https://annict.com) GraphQL API client library for JavaScript
 
@@ -54,3 +55,7 @@ If you're coming from [annict.js](https://www.npmjs.com/package/annict) (a REST 
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## License
+
+[MIT](./LICENSE)
