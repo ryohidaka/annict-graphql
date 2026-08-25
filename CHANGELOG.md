@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.7
+
+### Minor Changes
+
+- [`f02c657`](https://github.com/ryohidaka/annict-graphql/commit/f02c65790cce615d66f1a6c903eecf8bc9769a88) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Person.search()` for searching people by name or Annict ID, with sort order support via `PERSON_ORDER_FIELD`.
+
 ## 0.1.0-beta.6
 
 ### Minor Changes
