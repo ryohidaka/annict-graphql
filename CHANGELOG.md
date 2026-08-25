@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.8
+
+### Minor Changes
+
+- [`7723901`](https://github.com/ryohidaka/annict-graphql/commit/7723901029859ebc1cb8d763b07b394504a0699d) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Organization.search()` for searching organizations by name or Annict ID, with sort order support via `ORGANIZATION_ORDER_FIELD`.
+
 ## 0.1.0-beta.7
 
 ### Minor Changes
