@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.13
+
+### Major Changes
+
+- [`39830e5`](https://github.com/ryohidaka/annict-graphql/commit/39830e5711b1e9ed50bfb4af09a640b9a8e8f4d4) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Prepare the stable 1.0.0 release.
+
 ## 0.1.0-beta.12
 
 ### Patch Changes
