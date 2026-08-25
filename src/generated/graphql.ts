@@ -25,6 +25,13 @@ export type Media = "MOVIE" | "OTHER" | "OVA" | "TV" | "WEB";
 
 export type OrderDirection = "ASC" | "DESC";
 
+export type OrganizationOrder = {
+  direction: OrderDirection;
+  field: OrganizationOrderField;
+};
+
+export type OrganizationOrderField = "CREATED_AT" | "FAVORITE_ORGANIZATIONS_COUNT";
+
 export type PersonOrder = {
   direction: OrderDirection;
   field: PersonOrderField;
@@ -240,6 +247,22 @@ export type PersonFieldsFragment = {
   twitterUsernameEn: string;
 };
 
+export type OrganizationFieldsFragment = {
+  id: string;
+  annictId: number;
+  name: string;
+  nameEn: string;
+  nameKana: string;
+  url: string | null;
+  urlEn: string;
+  wikipediaUrl: string | null;
+  wikipediaUrlEn: string;
+  twitterUsername: string | null;
+  twitterUsernameEn: string;
+  staffsCount: number;
+  favoriteOrganizationsCount: number;
+};
+
 export type NodeQueryVariables = Exact<{
   id: string;
 }>;
@@ -297,6 +320,38 @@ export type NodesQuery = {
     | { id: string }
     | null
   >;
+};
+
+export type SearchOrganizationsQueryVariables = Exact<{
+  names?: Array<string> | string | null | undefined;
+  annictIds?: Array<number> | number | null | undefined;
+  orderBy?: Types.OrganizationOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type SearchOrganizationsQuery = {
+  searchOrganizations: {
+    edges: Array<{
+      node: {
+        id: string;
+        annictId: number;
+        name: string;
+        nameEn: string;
+        nameKana: string;
+        url: string | null;
+        urlEn: string;
+        wikipediaUrl: string | null;
+        wikipediaUrlEn: string;
+        twitterUsername: string | null;
+        twitterUsernameEn: string;
+        staffsCount: number;
+        favoriteOrganizationsCount: number;
+      } | null;
+    } | null> | null;
+  } | null;
 };
 
 export type SearchPeopleQueryVariables = Exact<{

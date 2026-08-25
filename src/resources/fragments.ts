@@ -123,3 +123,21 @@ export const PERSON_FIELDS_FRAGMENT = /* GraphQL */ `
     twitterUsernameEn
   }
 `;
+
+export const ORGANIZATION_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment OrganizationFields on Organization {
+    id
+    annictId
+    name
+    nameEn
+    nameKana
+    url
+    urlEn
+    wikipediaUrl
+    wikipediaUrlEn
+    twitterUsername
+    twitterUsernameEn
+    staffsCount
+    favoriteOrganizationsCount
+  }
+`;
