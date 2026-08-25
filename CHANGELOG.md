@@ -1,5 +1,13 @@
 # annict-graphql
 
+## 0.1.0-beta.9
+
+### Minor Changes
+
+- [`38d3b76`](https://github.com/ryohidaka/annict-graphql/commit/38d3b76926b15f29834b9d0b3ec1721f1a8c3914) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Me.Record.create()`, `Me.Record.update()`, and `Me.Record.delete()` for managing watch records.
+  
+  Note: `Me.Record.delete()` returns the parent episode, not the deleted record — this matches the shape of `DeleteRecordPayload` in the GraphQL schema.
+
 ## 0.1.0-beta.8
 
 ### Minor Changes
