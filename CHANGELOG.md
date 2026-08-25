@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.12
+
+### Patch Changes
+
+- [`c738a30`](https://github.com/ryohidaka/annict-graphql/commit/c738a3044cc5f04d39a8c3c724c0c71fb3b0acbb) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Improve documentation and automate GraphQL code generation checks.
+
 ## 0.1.0-beta.11
 
 ### Minor Changes
