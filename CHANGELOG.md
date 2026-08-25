@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 0.1.0-beta.10
+
+### Minor Changes
+
+- [`1ee568a`](https://github.com/ryohidaka/annict-graphql/commit/1ee568a1416f15f314d9e0837d22081efb1c5e8b) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Me.Status.update()` for updating a work's watch status via `STATUS_STATE`.
+
 ## 0.1.0-beta.9
 
 ### Minor Changes
