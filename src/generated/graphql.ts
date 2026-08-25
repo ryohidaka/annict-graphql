@@ -389,6 +389,40 @@ export type CreateReviewMutation = {
   } | null;
 };
 
+export type UpdateReviewMutationVariables = Exact<{
+  reviewId: string;
+  title?: string | null | undefined;
+  body: string;
+  ratingOverallState: Types.RatingState;
+  ratingAnimationState: Types.RatingState;
+  ratingMusicState: Types.RatingState;
+  ratingStoryState: Types.RatingState;
+  ratingCharacterState: Types.RatingState;
+  shareTwitter?: boolean | null | undefined;
+  shareFacebook?: boolean | null | undefined;
+}>;
+
+export type UpdateReviewMutation = {
+  updateReview: {
+    review: {
+      id: string;
+      annictId: number;
+      title: string | null;
+      body: string;
+      ratingOverallState: Types.RatingState | null;
+      ratingAnimationState: Types.RatingState | null;
+      ratingMusicState: Types.RatingState | null;
+      ratingStoryState: Types.RatingState | null;
+      ratingCharacterState: Types.RatingState | null;
+      likesCount: number;
+      impressionsCount: number;
+      modifiedAt: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+  } | null;
+};
+
 export type UpdateStatusMutationVariables = Exact<{
   workId: string;
   state: Types.StatusState;
