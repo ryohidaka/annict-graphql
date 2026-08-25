@@ -1,5 +1,13 @@
 # annict-graphql
 
+## 0.1.0-beta.11
+
+### Minor Changes
+
+- [`6c223ab`](https://github.com/ryohidaka/annict-graphql/commit/6c223ab773c441fee8aa17fff77a5c42c03355e2) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Me.Review.create()`, `Me.Review.update()`, and `Me.Review.delete()` for managing reviews.
+  
+  Note: `Me.Review.update()` requires all five rating fields (unlike `create`, where they're optional), matching `UpdateReviewInput` in the GraphQL schema. `Me.Review.delete()` returns the parent work, not the deleted review.
+
 ## 0.1.0-beta.10
 
 ### Minor Changes
