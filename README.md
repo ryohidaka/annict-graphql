@@ -39,6 +39,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Character.search()`            | [search-characters.ts](./examples/search-characters.ts)       |
 | `Person.search()`               | [search-people.ts](./examples/search-people.ts)               |
 | `Organization.search()`         | [search-organizations.ts](./examples/search-organizations.ts) |
+| `Me.Record.create()`            | [create-record.ts](./examples/create-record.ts)               |
 
 ## Contributing
 

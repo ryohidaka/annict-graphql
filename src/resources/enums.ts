@@ -4,6 +4,7 @@ import type {
   OrderDirection,
   OrganizationOrderField,
   PersonOrderField,
+  RatingState,
   WorkOrderField,
 } from "@/generated/types";
 
@@ -37,3 +38,10 @@ export const ORGANIZATION_ORDER_FIELD = {
   CreatedAt: "CREATED_AT",
   FavoriteOrganizationsCount: "FAVORITE_ORGANIZATIONS_COUNT",
 } as const satisfies Record<string, OrganizationOrderField>;
+
+export const RATING_STATE = {
+  Great: "GREAT",
+  Good: "GOOD",
+  Average: "AVERAGE",
+  Bad: "BAD",
+} as const satisfies Record<string, RatingState>;

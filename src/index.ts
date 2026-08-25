@@ -7,6 +7,7 @@ export type { AnnictEpisode } from "@/resources/episode";
 export type { AnnictCharacter } from "@/resources/character";
 export type { AnnictPerson } from "@/resources/person";
 export type { AnnictOrganization } from "@/resources/organization";
+export type { AnnictRecord } from "@/resources/me/record";
 export {
   WORK_ORDER_FIELD,
   EPISODE_ORDER_FIELD,
@@ -14,6 +15,7 @@ export {
   PERSON_ORDER_FIELD,
   ORGANIZATION_ORDER_FIELD,
   ORDER_DIRECTION,
+  RATING_STATE,
 } from "@/resources/enums";
 export type {
   WorkOrderField,
@@ -22,4 +24,5 @@ export type {
   PersonOrderField,
   OrganizationOrderField,
   OrderDirection,
+  RatingState,
 } from "@/generated/types";

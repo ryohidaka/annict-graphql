@@ -141,3 +141,20 @@ export const ORGANIZATION_FIELDS_FRAGMENT = /* GraphQL */ `
     favoriteOrganizationsCount
   }
 `;
+
+export const RECORD_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment RecordFields on Record {
+    id
+    annictId
+    comment
+    commentsCount
+    rating
+    ratingState
+    likesCount
+    facebookClickCount
+    twitterClickCount
+    modified
+    createdAt
+    updatedAt
+  }
+`;

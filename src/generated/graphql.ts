@@ -39,6 +39,8 @@ export type PersonOrder = {
 
 export type PersonOrderField = "CREATED_AT" | "FAVORITE_PEOPLE_COUNT";
 
+export type RatingState = "AVERAGE" | "BAD" | "GOOD" | "GREAT";
+
 /** Season name */
 export type SeasonName = "AUTUMN" | "SPRING" | "SUMMER" | "WINTER";
 
@@ -261,6 +263,48 @@ export type OrganizationFieldsFragment = {
   twitterUsernameEn: string;
   staffsCount: number;
   favoriteOrganizationsCount: number;
+};
+
+export type RecordFieldsFragment = {
+  id: string;
+  annictId: number;
+  comment: string | null;
+  commentsCount: number;
+  rating: number | null;
+  ratingState: Types.RatingState | null;
+  likesCount: number;
+  facebookClickCount: number;
+  twitterClickCount: number;
+  modified: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateRecordMutationVariables = Exact<{
+  episodeId: string;
+  comment?: string | null | undefined;
+  ratingState?: Types.RatingState | null | undefined;
+  shareTwitter?: boolean | null | undefined;
+  shareFacebook?: boolean | null | undefined;
+}>;
+
+export type CreateRecordMutation = {
+  createRecord: {
+    record: {
+      id: string;
+      annictId: number;
+      comment: string | null;
+      commentsCount: number;
+      rating: number | null;
+      ratingState: Types.RatingState | null;
+      likesCount: number;
+      facebookClickCount: number;
+      twitterClickCount: number;
+      modified: boolean;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+  } | null;
 };
 
 export type NodeQueryVariables = Exact<{
