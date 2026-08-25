@@ -4,6 +4,8 @@ import type {
   CreateReviewMutationVariables,
   UpdateReviewMutation,
   UpdateReviewMutationVariables,
+  DeleteReviewMutation,
+  DeleteReviewMutationVariables,
   ReviewFieldsFragment,
 } from "@/generated/graphql";
 import type { RatingState } from "@/generated/types";
@@ -74,6 +76,16 @@ const UPDATE_REVIEW_MUTATION = /* GraphQL */ `
     ) {
       review {
         ...ReviewFields
+      }
+    }
+  }
+`;
+
+const DELETE_REVIEW_MUTATION = /* GraphQL */ `
+  mutation DeleteReview($reviewId: ID!) {
+    deleteReview(input: { reviewId: $reviewId }) {
+      work {
+        id
       }
     }
   }
@@ -161,5 +173,24 @@ export const createReviewResource = (client: GraphQLClient) => ({
       variables,
     );
     return updateReview?.review ?? null;
+  },
+
+  /**
+   * Deletes a review.
+   *
+   * Note: `DeleteReviewPayload` returns the parent `work`, not the deleted
+   * review itself.
+   *
+   * @param reviewId - Global ID of the review to delete
+   * @returns The parent work's ID, or `null` if the deletion failed
+   * @see https://developers.annict.com/docs/graphql-api/beta/reference/mutations/delete-review
+   */
+  async delete(reviewId: string): Promise<{ id: string } | null> {
+    const variables: DeleteReviewMutationVariables = { reviewId };
+    const { deleteReview } = await client.request<DeleteReviewMutation>(
+      DELETE_REVIEW_MUTATION,
+      variables,
+    );
+    return deleteReview?.work ?? null;
   },
 });

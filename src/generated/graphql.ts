@@ -423,6 +423,12 @@ export type UpdateReviewMutation = {
   } | null;
 };
 
+export type DeleteReviewMutationVariables = Exact<{
+  reviewId: string;
+}>;
+
+export type DeleteReviewMutation = { deleteReview: { work: { id: string } | null } | null };
+
 export type UpdateStatusMutationVariables = Exact<{
   workId: string;
   state: Types.StatusState;

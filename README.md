@@ -45,6 +45,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Me.Status.update()`            | [update-status.ts](./examples/update-status.ts)               |
 | `Me.Review.create()`            | [create-review.ts](./examples/create-review.ts)               |
 | `Me.Review.update()`            | [update-review.ts](./examples/update-review.ts)               |
+| `Me.Review.delete()`            | [delete-review.ts](./examples/delete-review.ts)               |
 
 ## Contributing
 

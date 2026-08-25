@@ -101,3 +101,33 @@ describe("Me.Review.update", () => {
     expect(result).toEqual(mockReview);
   });
 });
+
+describe("Me.Review.delete", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns the parent work", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      deleteReview: { work: { id: "V29yay0xODA4" } },
+    });
+
+    const review = createReviewResource(client);
+    const result = await review.delete("UmV2aWV3LTE5MTgxNA==");
+
+    expect(result).toEqual({ id: "V29yay0xODA4" });
+  });
+
+  it("returns null when deletion fails", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      deleteReview: { work: null },
+    });
+
+    const review = createReviewResource(client);
+    const result = await review.delete("invalid");
+
+    expect(result).toBeNull();
+  });
+});
