@@ -1,6 +1,6 @@
 {
   "name": "annict-graphql",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Annict GraphQL API client library for JavaScript.",
   "keywords": [
     "annict",

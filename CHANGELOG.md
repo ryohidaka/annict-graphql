@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.14
+
+### Minor Changes
+
+- [`703284a`](https://github.com/ryohidaka/annict-graphql/commit/703284a496d05aca0a2078f7c40cb067e30c7805) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `AnnictOAuth` for OAuth authorization, token exchange, token inspection, and revocation.
+
 ## 1.0.0-beta.13
 
 ### Major Changes
