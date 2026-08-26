@@ -51,6 +51,30 @@ console.log(`${viewer.name} (@${viewer.username})`);
 | `Me.Review.create()`            | [create-review.ts](./examples/create-review.ts)               |
 | `Me.Review.update()`            | [update-review.ts](./examples/update-review.ts)               |
 | `Me.Review.delete()`            | [delete-review.ts](./examples/delete-review.ts)               |
+| `AnnictOAuth`                   | [oauth-flow.ts](./examples/oauth-flow.ts)                     |
+
+## OAuth
+
+他のユーザーの代わりにアプリケーションから操作する場合は、個人用アクセストークンではなく、`AnnictOAuth` を使って
+[OAuth 2.0 フロー](https://developers.annict.com/docs/authentication/oauth)を実装します。
+
+```typescript
+import { AnnictOAuth, AnnictClient } from "annict-graphql";
+
+const oauth = new AnnictOAuth({
+  clientId: "<CLIENT_ID>",
+  clientSecret: "<CLIENT_SECRET>",
+  redirectUri: "urn:ietf:wg:oauth:2.0:oob",
+});
+
+const authorizeUrl = oauth.getAuthorizeUrl({ scope: "read write" });
+// authorizeUrl にユーザーを誘導し、その後:
+
+const token = await oauth.token({ code: "<AUTH_CODE>" });
+const annict = new AnnictClient(token.accessToken);
+```
+
+[oauth-flow.ts](./examples/oauth-flow.ts) に完全なサンプルがあります。
 
 ## annict.js からの移行
 

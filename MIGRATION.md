@@ -36,9 +36,10 @@ annict.js's `Me.Work.get` (list works by status) has no direct equivalent. Use `
 
 annict.js's `Me.Program.get` (broadcast schedule) is not covered by the current GraphQL API surface used here.
 
-### No OAuth support
+### OAuth is supported separately
 
-This client only supports personal access tokens.
+For applications acting on behalf of other users, use `AnnictOAuth` instead of
+a personal access token. See the [OAuth example](./examples/oauth-flow.ts).
 
 ## Setup
 
@@ -74,7 +75,7 @@ const annict = new AnnictClient(accessToken);
 | —                                                      | `Node.get(id)`, `Node.getMany(ids)`                              |
 | `Me.Work.get({ filter_status })`                       | No direct equivalent (use `Work.search()` + `viewerStatusState`) |
 | `Me.Program.get()` (broadcast schedule)                | Not covered                                                      |
-| `OAuth.token(...)`                                     | Not covered (personal access tokens only)                        |
+| `OAuth.token(...)`                                     | `AnnictOAuth.token(...)`                                         |
 
 ## Example
 

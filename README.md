@@ -51,6 +51,31 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Me.Review.create()`            | [create-review.ts](./examples/create-review.ts)               |
 | `Me.Review.update()`            | [update-review.ts](./examples/update-review.ts)               |
 | `Me.Review.delete()`            | [delete-review.ts](./examples/delete-review.ts)               |
+| `AnnictOAuth`                   | [oauth-flow.ts](./examples/oauth-flow.ts)                     |
+
+## OAuth
+
+For applications acting on behalf of other users, use `AnnictOAuth` to
+implement the [OAuth 2.0 flow](https://developers.annict.com/docs/authentication/oauth)
+instead of a personal access token.
+
+```typescript
+import { AnnictOAuth, AnnictClient } from "annict-graphql";
+
+const oauth = new AnnictOAuth({
+  clientId: "<CLIENT_ID>",
+  clientSecret: "<CLIENT_SECRET>",
+  redirectUri: "urn:ietf:wg:oauth:2.0:oob",
+});
+
+const authorizeUrl = oauth.getAuthorizeUrl({ scope: "read write" });
+// redirect the user to authorizeUrl, then:
+
+const token = await oauth.token({ code: "<AUTH_CODE>" });
+const annict = new AnnictClient(token.accessToken);
+```
+
+See [oauth-flow.ts](./examples/oauth-flow.ts) for a full example.
 
 ## Migrating from annict.js
 

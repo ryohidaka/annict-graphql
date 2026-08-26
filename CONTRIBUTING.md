@@ -28,6 +28,13 @@ vp check
 vp pack
 ```
 
+## OAuth example
+
+To run `examples/oauth-flow.ts`, register the redirect URI
+`urn:ietf:wg:oauth:2.0:oob` in the Annict application settings and set
+`ANNICT_CLIENT_ID` and `ANNICT_CLIENT_SECRET` in `.env`. The example prompts
+for the authorization code after the authorization step.
+
 ## Commit Messages
 
 - Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
