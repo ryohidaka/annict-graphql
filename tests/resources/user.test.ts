@@ -141,9 +141,19 @@ describe("User connection fallbacks", () => {
         libraryEntries: null,
         records: null,
         works: null,
-        programs: { edges: [null] },
+        programs: { edges: [{ node: null }] },
       },
     });
+    const user = createUserResource(client);
+    expect(await user.library({ username: "testuser" })).toEqual([]);
+    expect(await user.records({ username: "testuser" })).toEqual([]);
+    expect(await user.works({ username: "testuser" })).toEqual([]);
+    expect(await user.programs({ username: "testuser" })).toEqual([]);
+  });
+
+  it("returns empty arrays when the user is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ user: null });
     const user = createUserResource(client);
     expect(await user.library({ username: "testuser" })).toEqual([]);
     expect(await user.records({ username: "testuser" })).toEqual([]);

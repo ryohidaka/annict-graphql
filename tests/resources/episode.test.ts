@@ -36,12 +36,18 @@ describe("Episode.search", () => {
   it("returns an empty array when no episodes match", async () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
     vi.spyOn(client, "request").mockResolvedValue({
-      searchEpisodes: { edges: [] },
+      searchEpisodes: { edges: [{ node: null }] },
     });
 
     const episode = createEpisodeResource(client);
     const result = await episode.search({ annictIds: [999999] });
 
     expect(result).toEqual([]);
+  });
+
+  it("returns an empty array when the connection is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ searchEpisodes: null });
+    expect(await createEpisodeResource(client).search()).toEqual([]);
   });
 });

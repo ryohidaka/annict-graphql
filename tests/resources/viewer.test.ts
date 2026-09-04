@@ -140,9 +140,19 @@ describe("Viewer connection fallbacks", () => {
         libraryEntries: null,
         records: null,
         works: null,
-        programs: { edges: [null] },
+        programs: { edges: [{ node: null }] },
       },
     });
+    const viewer = createViewerResource(client);
+    expect(await viewer.library()).toEqual([]);
+    expect(await viewer.records()).toEqual([]);
+    expect(await viewer.works()).toEqual([]);
+    expect(await viewer.programs()).toEqual([]);
+  });
+
+  it("returns empty arrays when the viewer is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ viewer: null });
     const viewer = createViewerResource(client);
     expect(await viewer.library()).toEqual([]);
     expect(await viewer.records()).toEqual([]);

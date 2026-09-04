@@ -90,6 +90,13 @@ describe("Me.Record.update", () => {
 
     expect(result).toEqual(mockRecord);
   });
+
+  it("returns null when the update fails", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ updateRecord: { record: null } });
+    const record = createRecordResource(client);
+    expect(await record.update({ recordId: "invalid" })).toBeNull();
+  });
 });
 
 describe("Me.Record.delete", () => {

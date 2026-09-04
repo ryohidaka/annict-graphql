@@ -45,12 +45,18 @@ describe("Person.search", () => {
   it("returns an empty array when no people match", async () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
     vi.spyOn(client, "request").mockResolvedValue({
-      searchPeople: { edges: [] },
+      searchPeople: { edges: [{ node: null }] },
     });
 
     const person = createPersonResource(client);
     const result = await person.search({ names: ["nonexistent"] });
 
     expect(result).toEqual([]);
+  });
+
+  it("returns an empty array when the connection is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ searchPeople: null });
+    expect(await createPersonResource(client).search()).toEqual([]);
   });
 });

@@ -39,12 +39,18 @@ describe("Organization.search", () => {
   it("returns an empty array when no organizations match", async () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
     vi.spyOn(client, "request").mockResolvedValue({
-      searchOrganizations: { edges: [] },
+      searchOrganizations: { edges: [{ node: null }] },
     });
 
     const organization = createOrganizationResource(client);
     const result = await organization.search({ names: ["nonexistent"] });
 
     expect(result).toEqual([]);
+  });
+
+  it("returns an empty array when the connection is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ searchOrganizations: null });
+    expect(await createOrganizationResource(client).search()).toEqual([]);
   });
 });

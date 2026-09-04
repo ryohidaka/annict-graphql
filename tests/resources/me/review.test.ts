@@ -100,6 +100,23 @@ describe("Me.Review.update", () => {
 
     expect(result).toEqual(mockReview);
   });
+
+  it("returns null when the update fails", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ updateReview: { review: null } });
+    const review = createReviewResource(client);
+    expect(
+      await review.update({
+        reviewId: "invalid",
+        body: "test",
+        ratingOverallState: "GREAT",
+        ratingAnimationState: "GREAT",
+        ratingMusicState: "GREAT",
+        ratingStoryState: "GREAT",
+        ratingCharacterState: "GREAT",
+      }),
+    ).toBeNull();
+  });
 });
 
 describe("Me.Review.delete", () => {

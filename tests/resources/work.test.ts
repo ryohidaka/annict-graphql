@@ -52,12 +52,18 @@ describe("Work.search", () => {
   it("returns an empty array when no works match", async () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
     vi.spyOn(client, "request").mockResolvedValue({
-      searchWorks: { edges: [] },
+      searchWorks: { edges: [{ node: null }] },
     });
 
     const work = createWorkResource(client);
     const result = await work.search({ titles: ["nonexistent"] });
 
     expect(result).toEqual([]);
+  });
+
+  it("returns an empty array when the connection is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ searchWorks: null });
+    expect(await createWorkResource(client).search()).toEqual([]);
   });
 });

@@ -51,12 +51,18 @@ describe("Character.search", () => {
   it("returns an empty array when no characters match", async () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
     vi.spyOn(client, "request").mockResolvedValue({
-      searchCharacters: { edges: [] },
+      searchCharacters: { edges: [{ node: null }] },
     });
 
     const character = createCharacterResource(client);
     const result = await character.search({ names: ["nonexistent"] });
 
     expect(result).toEqual([]);
+  });
+
+  it("returns an empty array when the connection is null", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ searchCharacters: null });
+    expect(await createCharacterResource(client).search()).toEqual([]);
   });
 });
