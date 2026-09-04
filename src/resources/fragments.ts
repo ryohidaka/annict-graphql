@@ -53,6 +53,33 @@ export const LIBRARY_ENTRY_FIELDS_FRAGMENT = /* GraphQL */ `
   }
 `;
 
+export const PROGRAM_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment ProgramFields on Program {
+    id
+    annictId
+    startedAt
+    state
+    rebroadcast
+    episode {
+      id
+      annictId
+      title
+      number
+      numberText
+    }
+    work {
+      id
+      annictId
+      title
+    }
+    channel {
+      id
+      annictId
+      name
+    }
+  }
+`;
+
 export const WORK_FIELDS_FRAGMENT = /* GraphQL */ `
   fragment WorkFields on Work {
     id

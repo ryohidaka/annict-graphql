@@ -48,6 +48,15 @@ export type PersonOrder = {
 
 export type PersonOrderField = "CREATED_AT" | "FAVORITE_PEOPLE_COUNT";
 
+export type ProgramOrder = {
+  direction: OrderDirection;
+  field: ProgramOrderField;
+};
+
+export type ProgramOrderField = "STARTED_AT";
+
+export type ProgramState = "HIDDEN" | "PUBLISHED";
+
 export type RatingState = "AVERAGE" | "BAD" | "GOOD" | "GREAT";
 
 export type RecordOrder = {
@@ -187,6 +196,23 @@ export type LibraryEntryFieldsFragment = {
     numberText: string | null;
   } | null;
   nextProgram: { id: string } | null;
+};
+
+export type ProgramFieldsFragment = {
+  id: string;
+  annictId: number;
+  startedAt: string;
+  state: Types.ProgramState;
+  rebroadcast: boolean;
+  episode: {
+    id: string;
+    annictId: number;
+    title: string | null;
+    number: number | null;
+    numberText: string | null;
+  };
+  work: { id: string; annictId: number; title: string };
+  channel: { id: string; annictId: number; name: string };
 };
 
 export type WorkFieldsFragment = {
@@ -909,6 +935,40 @@ export type ViewerWorksQuery = {
           twitterUsername: string | null;
           twitterHashtag: string | null;
           viewerStatusState: Types.StatusState | null;
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
+export type ViewerProgramsQueryVariables = Exact<{
+  unwatched?: boolean | null | undefined;
+  orderBy?: Types.ProgramOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type ViewerProgramsQuery = {
+  viewer: {
+    programs: {
+      edges: Array<{
+        node: {
+          id: string;
+          annictId: number;
+          startedAt: string;
+          state: Types.ProgramState;
+          rebroadcast: boolean;
+          episode: {
+            id: string;
+            annictId: number;
+            title: string | null;
+            number: number | null;
+            numberText: string | null;
+          };
+          work: { id: string; annictId: number; title: string };
+          channel: { id: string; annictId: number; name: string };
         } | null;
       } | null> | null;
     } | null;

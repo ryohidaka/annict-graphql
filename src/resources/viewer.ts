@@ -10,7 +10,10 @@ import type {
   RecordFieldsFragment,
   ViewerWorksQuery,
   ViewerWorksQueryVariables,
+  ViewerProgramsQuery,
+  ViewerProgramsQueryVariables,
   WorkFieldsFragment,
+  ProgramFieldsFragment,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
@@ -18,10 +21,12 @@ import type {
   RecordOrderField,
   StatusState,
   WorkOrderField,
+  ProgramOrderField,
 } from "@/generated/types";
 import {
   LIBRARY_ENTRY_FIELDS_FRAGMENT,
   RECORD_FIELDS_FRAGMENT,
+  PROGRAM_FIELDS_FRAGMENT,
   USER_FIELDS_FRAGMENT,
   WORK_FIELDS_FRAGMENT,
 } from "./fragments";
@@ -134,6 +139,35 @@ const VIEWER_WORKS_QUERY = /* GraphQL */ `
   }
 `;
 
+const VIEWER_PROGRAMS_QUERY = /* GraphQL */ `
+  ${PROGRAM_FIELDS_FRAGMENT}
+  query ViewerPrograms(
+    $unwatched: Boolean
+    $orderBy: ProgramOrder
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    viewer {
+      programs(
+        unwatched: $unwatched
+        orderBy: $orderBy
+        after: $after
+        before: $before
+        first: $first
+        last: $last
+      ) {
+        edges {
+          node {
+            ...ProgramFields
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictViewer = UserFieldsFragment;
 
 export interface ViewerLibraryParams {
@@ -163,6 +197,15 @@ export interface ViewerWorksParams {
   seasons?: string[];
   annictIds?: number[];
   orderBy?: { field: WorkOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface ViewerProgramsParams {
+  unwatched?: boolean;
+  orderBy?: { field: ProgramOrderField; direction: OrderDirection };
   after?: string;
   before?: string;
   first?: number;
@@ -221,5 +264,14 @@ export const createViewerResource = (client: GraphQLClient) => ({
     return (viewer?.works?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((work): work is WorkFieldsFragment => work != null);
+  },
+
+  /** Gets programs associated with the authenticated user. */
+  async programs(params: ViewerProgramsParams = {}): Promise<ProgramFieldsFragment[]> {
+    const variables: ViewerProgramsQueryVariables = params;
+    const { viewer } = await client.request<ViewerProgramsQuery>(VIEWER_PROGRAMS_QUERY, variables);
+    return (viewer?.programs?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((program): program is ProgramFieldsFragment => program != null);
   },
 });
