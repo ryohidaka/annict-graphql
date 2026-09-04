@@ -34,6 +34,41 @@ console.log(`${viewer.name} (@${viewer.username})`);
 
 すべてのエンドポイントの使用例は [`examples/`](./examples) にあります。
 
+### Viewer
+
+- [`Viewer.get()`](./examples/get-viewer.ts)
+- [`Viewer.library()`](./examples/get-viewer-library.ts)
+- [`Viewer.records()`](./examples/get-viewer-records.ts)
+- [`Viewer.works()`](./examples/get-viewer-works.ts)
+- [`Viewer.programs()`](./examples/get-viewer-programs.ts)
+
+### User
+
+- [`User.get()`](./examples/get-user.ts)
+- [`User.library()`](./examples/get-user-library.ts)
+- [`User.records()`](./examples/get-user-records.ts)
+- [`User.works()`](./examples/get-user-works.ts)
+- [`User.programs()`](./examples/get-user-programs.ts)
+
+### Search and node lookup
+
+- [`Node.get()` / `Node.getMany()`](./examples/get-node.ts)
+- [`Work.search()`](./examples/search-works.ts)
+- [`Episode.search()`](./examples/search-episodes.ts)
+- [`Character.search()`](./examples/search-characters.ts)
+- [`Person.search()`](./examples/search-people.ts)
+- [`Organization.search()`](./examples/search-organizations.ts)
+
+### Mutations
+
+- [`Me.Record`](./examples/create-record.ts), [`update`](./examples/update-record.ts), [`delete`](./examples/delete-record.ts)
+- [`Me.Status.update()`](./examples/update-status.ts)
+- [`Me.Review`](./examples/create-review.ts), [`update`](./examples/update-review.ts), [`delete`](./examples/delete-review.ts)
+
+### OAuth
+
+- [`AnnictOAuth`](./examples/oauth-flow.ts)
+
 | Namespace                       | Example                                                       |
 | ------------------------------- | ------------------------------------------------------------- |
 | `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts)                     |
