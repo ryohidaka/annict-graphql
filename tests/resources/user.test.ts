@@ -51,3 +51,29 @@ describe("User.get", () => {
     expect(result).toBeNull();
   });
 });
+
+describe("User.library", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns a flat list of library entries", async () => {
+    const mockEntry = {
+      id: "TGlbrYXJ5RW50cnktMQ==",
+      note: "Watching this season",
+      status: { state: "WATCHING" },
+      user: { id: "VXNlci0x", username: "testuser" },
+      work: { id: "V29yay0x", annictId: 1, title: "Test Work" },
+      nextEpisode: null,
+      nextProgram: null,
+    };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      user: { libraryEntries: { edges: [{ node: mockEntry }] } },
+    });
+
+    const result = await createUserResource(client).library({ username: "testuser" });
+
+    expect(result).toEqual([mockEntry]);
+  });
+});

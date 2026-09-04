@@ -39,6 +39,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts)                     |
 | `Viewer.library()`              | [get-viewer-library.ts](./examples/get-viewer-library.ts)     |
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
+| `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |
 | `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)           |
