@@ -160,3 +160,21 @@ describe("Viewer connection fallbacks", () => {
     expect(await viewer.programs()).toEqual([]);
   });
 });
+
+describe("Viewer.followers", () => {
+  it("returns users from both connections", async () => {
+    const mockUser = { id: "VXNlci0y", annictId: 2, name: "Test User", username: "testuser" };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    const requestSpy = vi.spyOn(client, "request");
+    const viewer = createViewerResource(client);
+
+    requestSpy.mockResolvedValueOnce({ viewer: { followers: { edges: [{ node: mockUser }] } } });
+    expect(await viewer.followers({ first: 1 })).toEqual([mockUser]);
+  });
+
+  it("returns an empty array when followers are unavailable", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ viewer: { followers: null } });
+    expect(await createViewerResource(client).followers()).toEqual([]);
+  });
+});

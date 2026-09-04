@@ -14,6 +14,8 @@ import type {
   ViewerProgramsQueryVariables,
   WorkFieldsFragment,
   ProgramFieldsFragment,
+  ViewerFollowersQuery,
+  ViewerFollowersQueryVariables,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
@@ -168,6 +170,23 @@ const VIEWER_PROGRAMS_QUERY = /* GraphQL */ `
   }
 `;
 
+const VIEWER_FOLLOWERS_QUERY = /* GraphQL */ `
+  query ViewerFollowers($after: String, $before: String, $first: Int, $last: Int) {
+    viewer {
+      followers(after: $after, before: $before, first: $first, last: $last) {
+        edges {
+          node {
+            id
+            annictId
+            name
+            username
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictViewer = UserFieldsFragment;
 
 export interface ViewerLibraryParams {
@@ -206,6 +225,13 @@ export interface ViewerWorksParams {
 export interface ViewerProgramsParams {
   unwatched?: boolean;
   orderBy?: { field: ProgramOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface ViewerFollowParams {
   after?: string;
   before?: string;
   first?: number;
@@ -273,5 +299,17 @@ export const createViewerResource = (client: GraphQLClient) => ({
     return (viewer?.programs?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((program): program is ProgramFieldsFragment => program != null);
+  },
+
+  /** Gets the authenticated user's followers. */
+  async followers(params: ViewerFollowParams = {}) {
+    const variables: ViewerFollowersQueryVariables = params;
+    const { viewer } = await client.request<ViewerFollowersQuery>(
+      VIEWER_FOLLOWERS_QUERY,
+      variables,
+    );
+    return (viewer?.followers?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((user) => user != null);
   },
 });
