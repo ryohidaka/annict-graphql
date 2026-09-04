@@ -9,17 +9,22 @@ import type {
   UserRecordsQuery,
   UserRecordsQueryVariables,
   RecordFieldsFragment,
+  UserWorksQuery,
+  UserWorksQueryVariables,
+  WorkFieldsFragment,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
   OrderDirection,
   StatusState,
   RecordOrderField,
+  WorkOrderField,
 } from "@/generated/types";
 import {
   LIBRARY_ENTRY_FIELDS_FRAGMENT,
   RECORD_FIELDS_FRAGMENT,
   USER_FIELDS_FRAGMENT,
+  WORK_FIELDS_FRAGMENT,
 } from "./fragments";
 
 const USER_QUERY = /* GraphQL */ `
@@ -97,6 +102,42 @@ const USER_RECORDS_QUERY = /* GraphQL */ `
   }
 `;
 
+const USER_WORKS_QUERY = /* GraphQL */ `
+  ${WORK_FIELDS_FRAGMENT}
+  query UserWorks(
+    $username: String!
+    $state: StatusState
+    $titles: [String!]
+    $seasons: [String!]
+    $annictIds: [Int!]
+    $orderBy: WorkOrder
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    user(username: $username) {
+      works(
+        state: $state
+        titles: $titles
+        seasons: $seasons
+        annictIds: $annictIds
+        orderBy: $orderBy
+        after: $after
+        before: $before
+        first: $first
+        last: $last
+      ) {
+        edges {
+          node {
+            ...WorkFields
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictUser = UserFieldsFragment;
 
 export interface UserParams {
@@ -121,6 +162,19 @@ export interface UserRecordsParams {
   username: string;
   hasComment?: boolean;
   orderBy?: { field: RecordOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface UserWorksParams {
+  username: string;
+  state?: StatusState;
+  titles?: string[];
+  seasons?: string[];
+  annictIds?: number[];
+  orderBy?: { field: WorkOrderField; direction: OrderDirection };
   after?: string;
   before?: string;
   first?: number;
@@ -169,5 +223,19 @@ export const createUserResource = (client: GraphQLClient) => ({
     return (user?.records?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((record): record is RecordFieldsFragment => record != null);
+  },
+
+  /**
+   * Gets works associated with a user.
+   *
+   * @param params - Username, work filters, sorting, and pagination options
+   * @returns Matching works
+   */
+  async works(params: UserWorksParams): Promise<WorkFieldsFragment[]> {
+    const variables: UserWorksQueryVariables = params;
+    const { user } = await client.request<UserWorksQuery>(USER_WORKS_QUERY, variables);
+    return (user?.works?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((work): work is WorkFieldsFragment => work != null);
   },
 });

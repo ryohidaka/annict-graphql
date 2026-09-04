@@ -41,8 +41,9 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Viewer.records()`              | [get-viewer-records.ts](./examples/get-viewer-records.ts)     |
 | `Viewer.works()`                | [get-viewer-works.ts](./examples/get-viewer-works.ts)         |
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
-| `User.records()`                | [get-user-records.ts](./examples/get-user-records.ts)         |
 | `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
+| `User.records()`                | [get-user-records.ts](./examples/get-user-records.ts)         |
+| `User.works()`                  | [get-user-works.ts](./examples/get-user-works.ts)             |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |
 | `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)           |

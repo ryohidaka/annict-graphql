@@ -726,6 +726,53 @@ export type UserRecordsQuery = {
   } | null;
 };
 
+export type UserWorksQueryVariables = Exact<{
+  username: string;
+  state?: Types.StatusState | null | undefined;
+  titles?: Array<string> | string | null | undefined;
+  seasons?: Array<string> | string | null | undefined;
+  annictIds?: Array<number> | number | null | undefined;
+  orderBy?: Types.WorkOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type UserWorksQuery = {
+  user: {
+    works: {
+      edges: Array<{
+        node: {
+          id: string;
+          annictId: number;
+          title: string;
+          titleEn: string | null;
+          titleKana: string | null;
+          titleRo: string | null;
+          media: Types.Media;
+          seasonName: Types.SeasonName | null;
+          seasonYear: number | null;
+          episodesCount: number;
+          noEpisodes: boolean;
+          watchersCount: number;
+          reviewsCount: number;
+          satisfactionRate: number | null;
+          malAnimeId: string | null;
+          syobocalTid: number | null;
+          officialSiteUrl: string | null;
+          officialSiteUrlEn: string | null;
+          wikipediaUrl: string | null;
+          wikipediaUrlEn: string | null;
+          twitterUsername: string | null;
+          twitterHashtag: string | null;
+          viewerStatusState: Types.StatusState | null;
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ViewerQuery = {

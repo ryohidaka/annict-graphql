@@ -43,6 +43,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
 | `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
 | `User.records()`                | [get-user-records.ts](./examples/get-user-records.ts)         |
+| `User.works()`                  | [get-user-works.ts](./examples/get-user-works.ts)             |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |
 | `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)           |
