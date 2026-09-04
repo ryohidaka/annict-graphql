@@ -2,7 +2,7 @@
 
 [English](./README.md) | [日本語](./README.ja.md)
 
-![NPM Version](https://img.shields.io/npm/v/annict-graphql?logo=npm)
+[![NPM Version](https://img.shields.io/npm/v/annict-graphql?logo=npm)](https://www.npmjs.com/package/annict-graphql)
 [![CI](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml/badge.svg)](https://github.com/ryohidaka/annict-graphql/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/ryohidaka/annict-graphql/graph/badge.svg?token=bEfNqlWhEr)](https://codecov.io/gh/ryohidaka/annict-graphql)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ryohidaka/annict-graphql)
