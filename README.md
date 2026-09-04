@@ -40,6 +40,7 @@ More examples for every endpoint are available in [`examples/`](./examples):
 | `Viewer.library()`              | [get-viewer-library.ts](./examples/get-viewer-library.ts)     |
 | `Viewer.records()`              | [get-viewer-records.ts](./examples/get-viewer-records.ts)     |
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
+| `User.records()`                | [get-user-records.ts](./examples/get-user-records.ts)         |
 | `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |

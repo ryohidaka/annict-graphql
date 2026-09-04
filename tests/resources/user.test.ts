@@ -77,3 +77,17 @@ describe("User.library", () => {
     expect(result).toEqual([mockEntry]);
   });
 });
+
+describe("User.records", () => {
+  it("returns a flat list of records", async () => {
+    const mockRecord = { id: "UmVjb3JkLTE=", comment: "Great episode", ratingState: "GREAT" };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      user: { records: { edges: [{ node: mockRecord }] } },
+    });
+
+    const result = await createUserResource(client).records({ username: "testuser", first: 1 });
+
+    expect(result).toEqual([mockRecord]);
+  });
+});

@@ -41,6 +41,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 | `Viewer.records()`              | [get-viewer-records.ts](./examples/get-viewer-records.ts)     |
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
 | `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
+| `User.records()`                | [get-user-records.ts](./examples/get-user-records.ts)         |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |
 | `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)           |

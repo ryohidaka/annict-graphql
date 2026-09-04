@@ -6,9 +6,21 @@ import type {
   UserLibraryQuery,
   UserLibraryQueryVariables,
   LibraryEntryFieldsFragment,
+  UserRecordsQuery,
+  UserRecordsQueryVariables,
+  RecordFieldsFragment,
 } from "@/generated/graphql";
-import type { LibraryEntryOrderField, OrderDirection, StatusState } from "@/generated/types";
-import { LIBRARY_ENTRY_FIELDS_FRAGMENT, USER_FIELDS_FRAGMENT } from "./fragments";
+import type {
+  LibraryEntryOrderField,
+  OrderDirection,
+  StatusState,
+  RecordOrderField,
+} from "@/generated/types";
+import {
+  LIBRARY_ENTRY_FIELDS_FRAGMENT,
+  RECORD_FIELDS_FRAGMENT,
+  USER_FIELDS_FRAGMENT,
+} from "./fragments";
 
 const USER_QUERY = /* GraphQL */ `
   ${USER_FIELDS_FRAGMENT}
@@ -55,6 +67,36 @@ const USER_LIBRARY_QUERY = /* GraphQL */ `
   }
 `;
 
+const USER_RECORDS_QUERY = /* GraphQL */ `
+  ${RECORD_FIELDS_FRAGMENT}
+  query UserRecords(
+    $username: String!
+    $hasComment: Boolean
+    $orderBy: RecordOrder
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    user(username: $username) {
+      records(
+        hasComment: $hasComment
+        orderBy: $orderBy
+        after: $after
+        before: $before
+        first: $first
+        last: $last
+      ) {
+        edges {
+          node {
+            ...RecordFields
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictUser = UserFieldsFragment;
 
 export interface UserParams {
@@ -69,6 +111,16 @@ export interface UserLibraryParams {
   seasonFrom?: string;
   seasonUntil?: string;
   orderBy?: { field: LibraryEntryOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface UserRecordsParams {
+  username: string;
+  hasComment?: boolean;
+  orderBy?: { field: RecordOrderField; direction: OrderDirection };
   after?: string;
   before?: string;
   first?: number;
@@ -102,5 +154,20 @@ export const createUserResource = (client: GraphQLClient) => ({
     return (user?.libraryEntries?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((entry): entry is LibraryEntryFieldsFragment => entry != null);
+  },
+
+  /**
+   * Gets records for a user.
+   *
+   * @param params - Username, record filters, sorting, and pagination options
+   * @returns Matching records
+   * @see https://developers.annict.com/docs/graphql-api/beta/reference/objects/record
+   */
+  async records(params: UserRecordsParams): Promise<RecordFieldsFragment[]> {
+    const variables: UserRecordsQueryVariables = params;
+    const { user } = await client.request<UserRecordsQuery>(USER_RECORDS_QUERY, variables);
+    return (user?.records?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((record): record is RecordFieldsFragment => record != null);
   },
 });

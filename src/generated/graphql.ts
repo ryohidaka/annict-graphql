@@ -693,6 +693,39 @@ export type UserLibraryQuery = {
   } | null;
 };
 
+export type UserRecordsQueryVariables = Exact<{
+  username: string;
+  hasComment?: boolean | null | undefined;
+  orderBy?: Types.RecordOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type UserRecordsQuery = {
+  user: {
+    records: {
+      edges: Array<{
+        node: {
+          id: string;
+          annictId: number;
+          comment: string | null;
+          commentsCount: number;
+          rating: number | null;
+          ratingState: Types.RatingState | null;
+          likesCount: number;
+          facebookClickCount: number;
+          twitterClickCount: number;
+          modified: boolean;
+          createdAt: string;
+          updatedAt: string;
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ViewerQuery = {
