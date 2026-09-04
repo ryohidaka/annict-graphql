@@ -91,3 +91,15 @@ describe("Viewer.records", () => {
     expect(result).toEqual([mockRecord]);
   });
 });
+
+describe("Viewer.works", () => {
+  it("returns works", async () => {
+    const mockWork = { id: "V29yay0x", annictId: 1, title: "Test Work" };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    const requestSpy = vi.spyOn(client, "request");
+    const viewer = createViewerResource(client);
+
+    requestSpy.mockResolvedValueOnce({ viewer: { works: { edges: [{ node: mockWork }] } } });
+    expect(await viewer.works({ first: 1 })).toEqual([mockWork]);
+  });
+});

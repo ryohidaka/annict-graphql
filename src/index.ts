@@ -2,6 +2,7 @@ export { AnnictClient } from "@/client";
 export type { AnnictViewer } from "@/resources/viewer";
 export type { ViewerLibraryParams } from "@/resources/viewer";
 export type { ViewerRecordsParams } from "@/resources/viewer";
+export type { ViewerWorksParams } from "@/resources/viewer";
 export type { AnnictUser } from "@/resources/user";
 export type { UserRecordsParams } from "@/resources/user";
 export type { UserLibraryParams } from "@/resources/user";

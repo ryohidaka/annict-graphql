@@ -8,17 +8,22 @@ import type {
   ViewerRecordsQuery,
   ViewerRecordsQueryVariables,
   RecordFieldsFragment,
+  ViewerWorksQuery,
+  ViewerWorksQueryVariables,
+  WorkFieldsFragment,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
   OrderDirection,
   RecordOrderField,
   StatusState,
+  WorkOrderField,
 } from "@/generated/types";
 import {
   LIBRARY_ENTRY_FIELDS_FRAGMENT,
   RECORD_FIELDS_FRAGMENT,
   USER_FIELDS_FRAGMENT,
+  WORK_FIELDS_FRAGMENT,
 } from "./fragments";
 
 const VIEWER_QUERY = /* GraphQL */ `
@@ -94,6 +99,41 @@ const VIEWER_RECORDS_QUERY = /* GraphQL */ `
   }
 `;
 
+const VIEWER_WORKS_QUERY = /* GraphQL */ `
+  ${WORK_FIELDS_FRAGMENT}
+  query ViewerWorks(
+    $state: StatusState
+    $titles: [String!]
+    $seasons: [String!]
+    $annictIds: [Int!]
+    $orderBy: WorkOrder
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    viewer {
+      works(
+        state: $state
+        titles: $titles
+        seasons: $seasons
+        annictIds: $annictIds
+        orderBy: $orderBy
+        after: $after
+        before: $before
+        first: $first
+        last: $last
+      ) {
+        edges {
+          node {
+            ...WorkFields
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictViewer = UserFieldsFragment;
 
 export interface ViewerLibraryParams {
@@ -111,6 +151,18 @@ export interface ViewerLibraryParams {
 export interface ViewerRecordsParams {
   hasComment?: boolean;
   orderBy?: { field: RecordOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface ViewerWorksParams {
+  state?: StatusState;
+  titles?: string[];
+  seasons?: string[];
+  annictIds?: number[];
+  orderBy?: { field: WorkOrderField; direction: OrderDirection };
   after?: string;
   before?: string;
   first?: number;
@@ -160,5 +212,14 @@ export const createViewerResource = (client: GraphQLClient) => ({
     return (viewer?.records?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((record): record is RecordFieldsFragment => record != null);
+  },
+
+  /** Gets works associated with the authenticated user. */
+  async works(params: ViewerWorksParams = {}): Promise<WorkFieldsFragment[]> {
+    const variables: ViewerWorksQueryVariables = params;
+    const { viewer } = await client.request<ViewerWorksQuery>(VIEWER_WORKS_QUERY, variables);
+    return (viewer?.works?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((work): work is WorkFieldsFragment => work != null);
   },
 });
