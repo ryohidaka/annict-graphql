@@ -17,6 +17,8 @@ import type {
   ProgramFieldsFragment,
   UserFollowersQuery,
   UserFollowersQueryVariables,
+  UserFollowingQuery,
+  UserFollowingQueryVariables,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
@@ -53,6 +55,29 @@ const USER_FOLLOWERS_QUERY = /* GraphQL */ `
   ) {
     user(username: $username) {
       followers(after: $after, before: $before, first: $first, last: $last) {
+        edges {
+          node {
+            id
+            annictId
+            name
+            username
+          }
+        }
+      }
+    }
+  }
+`;
+
+const USER_FOLLOWING_QUERY = /* GraphQL */ `
+  query UserFollowing(
+    $username: String!
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    user(username: $username) {
+      following(after: $after, before: $before, first: $first, last: $last) {
         edges {
           node {
             id
@@ -285,6 +310,20 @@ export const createUserResource = (client: GraphQLClient) => ({
     return (user?.followers?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((follower) => follower != null);
+  },
+
+  /**
+   * Gets the users followed by a user.
+   *
+   * @param params - Username and pagination options
+   * @returns The users followed by the user
+   */
+  async following(params: UserFollowersParams) {
+    const variables: UserFollowingQueryVariables = params;
+    const { user } = await client.request<UserFollowingQuery>(USER_FOLLOWING_QUERY, variables);
+    return (user?.following?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((followedUser) => followedUser != null);
   },
 
   /**

@@ -52,6 +52,7 @@ More examples for every endpoint are available in [`examples/`](./examples).
 - [`User.works()`](./examples/get-user-works.ts)
 - [`User.programs()`](./examples/get-user-programs.ts)
 - [`User.followers()`](./examples/get-user-followers.ts)
+- [`User.following()`](./examples/get-user-following.ts)
 
 ### Search and node lookup
 

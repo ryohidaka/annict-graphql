@@ -700,6 +700,24 @@ export type UserFollowersQuery = {
   } | null;
 };
 
+export type UserFollowingQueryVariables = Exact<{
+  username: string;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type UserFollowingQuery = {
+  user: {
+    following: {
+      edges: Array<{
+        node: { id: string; annictId: number; name: string; username: string } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
 export type UserLibraryQueryVariables = Exact<{
   username: string;
   states?: Array<Types.StatusState> | Types.StatusState | null | undefined;

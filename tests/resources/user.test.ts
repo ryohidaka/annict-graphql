@@ -146,6 +146,19 @@ describe("User.followers", () => {
   });
 });
 
+describe("User.following", () => {
+  it("returns followed users", async () => {
+    const mockUser = { id: "VXNlci0y", annictId: 2, name: "Followed", username: "followed" };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      user: { following: { edges: [{ node: mockUser }] } },
+    });
+    expect(await createUserResource(client).following({ username: "testuser" })).toEqual([
+      mockUser,
+    ]);
+  });
+});
+
 describe("User connection fallbacks", () => {
   it("returns empty arrays for null connections and nodes", async () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
@@ -156,6 +169,7 @@ describe("User connection fallbacks", () => {
         works: null,
         programs: { edges: [{ node: null }] },
         followers: null,
+        following: null,
       },
     });
     const user = createUserResource(client);
@@ -164,6 +178,7 @@ describe("User connection fallbacks", () => {
     expect(await user.works({ username: "testuser" })).toEqual([]);
     expect(await user.programs({ username: "testuser" })).toEqual([]);
     expect(await user.followers({ username: "testuser" })).toEqual([]);
+    expect(await user.following({ username: "testuser" })).toEqual([]);
   });
 
   it("returns empty arrays when the user is null", async () => {
@@ -175,5 +190,6 @@ describe("User connection fallbacks", () => {
     expect(await user.works({ username: "testuser" })).toEqual([]);
     expect(await user.programs({ username: "testuser" })).toEqual([]);
     expect(await user.followers({ username: "testuser" })).toEqual([]);
+    expect(await user.following({ username: "testuser" })).toEqual([]);
   });
 });
