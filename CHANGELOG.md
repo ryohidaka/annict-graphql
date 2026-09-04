@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.18
+
+### Patch Changes
+
+- [`a436889`](https://github.com/ryohidaka/annict-graphql/commit/a4368898159420d6b80df9a202dd0a93956e628d) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add tests for null GraphQL responses and connection nodes.
+
 ## 1.0.0-beta.17
 
 ### Minor Changes
