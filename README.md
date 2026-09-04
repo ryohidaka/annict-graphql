@@ -42,6 +42,7 @@ More examples for every endpoint are available in [`examples/`](./examples).
 - [`Viewer.works()`](./examples/get-viewer-works.ts)
 - [`Viewer.programs()`](./examples/get-viewer-programs.ts)
 - [`Viewer.followers()`](./examples/get-viewer-followers.ts)
+- [`Viewer.following()`](./examples/get-viewer-following.ts)
 
 ### User
 

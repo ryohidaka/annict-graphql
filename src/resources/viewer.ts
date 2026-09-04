@@ -16,6 +16,8 @@ import type {
   ProgramFieldsFragment,
   ViewerFollowersQuery,
   ViewerFollowersQueryVariables,
+  ViewerFollowingQuery,
+  ViewerFollowingQueryVariables,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
@@ -187,6 +189,23 @@ const VIEWER_FOLLOWERS_QUERY = /* GraphQL */ `
   }
 `;
 
+const VIEWER_FOLLOWING_QUERY = /* GraphQL */ `
+  query ViewerFollowing($after: String, $before: String, $first: Int, $last: Int) {
+    viewer {
+      following(after: $after, before: $before, first: $first, last: $last) {
+        edges {
+          node {
+            id
+            annictId
+            name
+            username
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictViewer = UserFieldsFragment;
 
 export interface ViewerLibraryParams {
@@ -309,6 +328,18 @@ export const createViewerResource = (client: GraphQLClient) => ({
       variables,
     );
     return (viewer?.followers?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((user) => user != null);
+  },
+
+  /** Gets the users followed by the authenticated user. */
+  async following(params: ViewerFollowParams = {}) {
+    const variables: ViewerFollowingQueryVariables = params;
+    const { viewer } = await client.request<ViewerFollowingQuery>(
+      VIEWER_FOLLOWING_QUERY,
+      variables,
+    );
+    return (viewer?.following?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((user) => user != null);
   },

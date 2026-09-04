@@ -42,6 +42,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 - [`Viewer.works()`](./examples/get-viewer-works.ts)
 - [`Viewer.programs()`](./examples/get-viewer-programs.ts)
 - [`Viewer.followers()`](./examples/get-viewer-followers.ts)
+- [`Viewer.following()`](./examples/get-viewer-following.ts)
 
 ### User
 

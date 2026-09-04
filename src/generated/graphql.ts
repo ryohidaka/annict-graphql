@@ -1045,6 +1045,23 @@ export type ViewerFollowersQuery = {
   } | null;
 };
 
+export type ViewerFollowingQueryVariables = Exact<{
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type ViewerFollowingQuery = {
+  viewer: {
+    following: {
+      edges: Array<{
+        node: { id: string; annictId: number; name: string; username: string } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
 export type SearchWorksQueryVariables = Exact<{
   titles?: Array<string> | string | null | undefined;
   seasons?: Array<string> | string | null | undefined;

@@ -148,6 +148,7 @@ describe("Viewer connection fallbacks", () => {
     expect(await viewer.records()).toEqual([]);
     expect(await viewer.works()).toEqual([]);
     expect(await viewer.programs()).toEqual([]);
+    expect(await viewer.following()).toEqual([]);
   });
 
   it("returns empty arrays when the viewer is null", async () => {
@@ -176,5 +177,22 @@ describe("Viewer.followers", () => {
     const client = new GraphQLClient("https://api.annict.com/graphql");
     vi.spyOn(client, "request").mockResolvedValue({ viewer: { followers: null } });
     expect(await createViewerResource(client).followers()).toEqual([]);
+  });
+});
+
+describe("Viewer.following", () => {
+  it("returns followed users", async () => {
+    const mockUser = { id: "VXNlci0y", annictId: 2, name: "Followed", username: "followed" };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      viewer: { following: { edges: [{ node: mockUser }] } },
+    });
+    expect(await createViewerResource(client).following({ first: 1 })).toEqual([mockUser]);
+  });
+
+  it("returns an empty array when following is unavailable", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({ viewer: { following: null } });
+    expect(await createViewerResource(client).following()).toEqual([]);
   });
 });
