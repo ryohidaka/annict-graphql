@@ -132,3 +132,22 @@ describe("User.programs", () => {
     expect(result).toEqual([mockProgram]);
   });
 });
+
+describe("User connection fallbacks", () => {
+  it("returns empty arrays for null connections and nodes", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      user: {
+        libraryEntries: null,
+        records: null,
+        works: null,
+        programs: { edges: [null] },
+      },
+    });
+    const user = createUserResource(client);
+    expect(await user.library({ username: "testuser" })).toEqual([]);
+    expect(await user.records({ username: "testuser" })).toEqual([]);
+    expect(await user.works({ username: "testuser" })).toEqual([]);
+    expect(await user.programs({ username: "testuser" })).toEqual([]);
+  });
+});

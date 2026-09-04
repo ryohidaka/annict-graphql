@@ -131,3 +131,22 @@ describe("Viewer.programs", () => {
     expect(await viewer.programs({ first: 1 })).toEqual([mockProgram]);
   });
 });
+
+describe("Viewer connection fallbacks", () => {
+  it("returns empty arrays for null connections and nodes", async () => {
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      viewer: {
+        libraryEntries: null,
+        records: null,
+        works: null,
+        programs: { edges: [null] },
+      },
+    });
+    const viewer = createViewerResource(client);
+    expect(await viewer.library()).toEqual([]);
+    expect(await viewer.records()).toEqual([]);
+    expect(await viewer.works()).toEqual([]);
+    expect(await viewer.programs()).toEqual([]);
+  });
+});
