@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.16
+
+### Minor Changes
+
+- [`caa7287`](https://github.com/ryohidaka/annict-graphql/commit/caa72877fab37e168a2b561f21d1285201933bdf) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Viewer.record()` and `User.record()` for fetching user records.
+
 ## 1.0.0-beta.15
 
 ### Minor Changes
