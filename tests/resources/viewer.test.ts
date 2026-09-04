@@ -51,3 +51,29 @@ describe("Viewer.get", () => {
     await expect(viewer.get()).rejects.toThrow("Failed to fetch viewer");
   });
 });
+
+describe("Viewer.library", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns a flat list of library entries", async () => {
+    const mockEntry = {
+      id: "TGlbrYXJ5RW50cnktMQ==",
+      note: "Watching this season",
+      status: { state: "WATCHING" },
+      user: { id: "VXNlci0x", username: "testuser" },
+      work: { id: "V29yay0x", annictId: 1, title: "Test Work" },
+      nextEpisode: null,
+      nextProgram: null,
+    };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      viewer: { libraryEntries: { edges: [{ node: mockEntry }] } },
+    });
+
+    const result = await createViewerResource(client).library({ first: 1 });
+
+    expect(result).toEqual([mockEntry]);
+  });
+});

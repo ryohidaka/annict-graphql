@@ -20,6 +20,15 @@ export type EpisodeOrder = {
 
 export type EpisodeOrderField = "CREATED_AT" | "SORT_NUMBER";
 
+export type LibraryEntryOrder = {
+  direction: OrderDirection;
+  field: LibraryEntryOrderField;
+};
+
+export type LibraryEntryOrderField =
+  /** 最後に記録またはスキップした日時 */
+  "LAST_TRACKED_AT";
+
 /** Media of anime */
 export type Media = "MOVIE" | "OTHER" | "OVA" | "TV" | "WEB";
 
@@ -155,6 +164,22 @@ export type UserFieldsFragment = {
   stopWatchingCount: number;
   viewerCanFollow: boolean;
   viewerIsFollowing: boolean;
+};
+
+export type LibraryEntryFieldsFragment = {
+  id: string;
+  note: string;
+  status: { state: Types.StatusState } | null;
+  user: { id: string; username: string };
+  work: { id: string; annictId: number; title: string };
+  nextEpisode: {
+    id: string;
+    annictId: number;
+    title: string | null;
+    number: number | null;
+    numberText: string | null;
+  } | null;
+  nextProgram: { id: string } | null;
 };
 
 export type WorkFieldsFragment = {
@@ -649,6 +674,42 @@ export type ViewerQuery = {
     stopWatchingCount: number;
     viewerCanFollow: boolean;
     viewerIsFollowing: boolean;
+  } | null;
+};
+
+export type ViewerLibraryQueryVariables = Exact<{
+  states?: Array<Types.StatusState> | Types.StatusState | null | undefined;
+  seasons?: Array<string> | string | null | undefined;
+  seasonFrom?: string | null | undefined;
+  seasonUntil?: string | null | undefined;
+  orderBy?: Types.LibraryEntryOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type ViewerLibraryQuery = {
+  viewer: {
+    libraryEntries: {
+      edges: Array<{
+        node: {
+          id: string;
+          note: string;
+          status: { state: Types.StatusState } | null;
+          user: { id: string; username: string };
+          work: { id: string; annictId: number; title: string };
+          nextEpisode: {
+            id: string;
+            annictId: number;
+            title: string | null;
+            number: number | null;
+            numberText: string | null;
+          } | null;
+          nextProgram: { id: string } | null;
+        } | null;
+      } | null> | null;
+    } | null;
   } | null;
 };
 

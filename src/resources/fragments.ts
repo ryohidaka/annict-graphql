@@ -24,6 +24,35 @@ export const USER_FIELDS_FRAGMENT = /* GraphQL */ `
   }
 `;
 
+export const LIBRARY_ENTRY_FIELDS_FRAGMENT = /* GraphQL */ `
+  fragment LibraryEntryFields on LibraryEntry {
+    id
+    note
+    status {
+      state
+    }
+    user {
+      id
+      username
+    }
+    work {
+      id
+      annictId
+      title
+    }
+    nextEpisode {
+      id
+      annictId
+      title
+      number
+      numberText
+    }
+    nextProgram {
+      id
+    }
+  }
+`;
+
 export const WORK_FIELDS_FRAGMENT = /* GraphQL */ `
   fragment WorkFields on Work {
     id

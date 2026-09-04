@@ -37,6 +37,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 | Namespace                       | Example                                                       |
 | ------------------------------- | ------------------------------------------------------------- |
 | `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts)                     |
+| `Viewer.library()`              | [get-viewer-library.ts](./examples/get-viewer-library.ts)     |
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |
