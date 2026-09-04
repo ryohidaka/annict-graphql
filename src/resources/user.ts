@@ -12,6 +12,9 @@ import type {
   UserWorksQuery,
   UserWorksQueryVariables,
   WorkFieldsFragment,
+  UserProgramsQuery,
+  UserProgramsQueryVariables,
+  ProgramFieldsFragment,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
@@ -19,12 +22,14 @@ import type {
   StatusState,
   RecordOrderField,
   WorkOrderField,
+  ProgramOrderField,
 } from "@/generated/types";
 import {
   LIBRARY_ENTRY_FIELDS_FRAGMENT,
   RECORD_FIELDS_FRAGMENT,
   USER_FIELDS_FRAGMENT,
   WORK_FIELDS_FRAGMENT,
+  PROGRAM_FIELDS_FRAGMENT,
 } from "./fragments";
 
 const USER_QUERY = /* GraphQL */ `
@@ -138,6 +143,36 @@ const USER_WORKS_QUERY = /* GraphQL */ `
   }
 `;
 
+const USER_PROGRAMS_QUERY = /* GraphQL */ `
+  ${PROGRAM_FIELDS_FRAGMENT}
+  query UserPrograms(
+    $username: String!
+    $unwatched: Boolean
+    $orderBy: ProgramOrder
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    user(username: $username) {
+      programs(
+        unwatched: $unwatched
+        orderBy: $orderBy
+        after: $after
+        before: $before
+        first: $first
+        last: $last
+      ) {
+        edges {
+          node {
+            ...ProgramFields
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictUser = UserFieldsFragment;
 
 export interface UserParams {
@@ -175,6 +210,16 @@ export interface UserWorksParams {
   seasons?: string[];
   annictIds?: number[];
   orderBy?: { field: WorkOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface UserProgramsParams {
+  username: string;
+  unwatched?: boolean;
+  orderBy?: { field: ProgramOrderField; direction: OrderDirection };
   after?: string;
   before?: string;
   first?: number;
@@ -237,5 +282,19 @@ export const createUserResource = (client: GraphQLClient) => ({
     return (user?.works?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((work): work is WorkFieldsFragment => work != null);
+  },
+
+  /**
+   * Gets programs associated with a user.
+   *
+   * @param params - Username, program filters, sorting, and pagination options
+   * @returns Matching programs
+   */
+  async programs(params: UserProgramsParams): Promise<ProgramFieldsFragment[]> {
+    const variables: UserProgramsQueryVariables = params;
+    const { user } = await client.request<UserProgramsQuery>(USER_PROGRAMS_QUERY, variables);
+    return (user?.programs?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((program): program is ProgramFieldsFragment => program != null);
   },
 });

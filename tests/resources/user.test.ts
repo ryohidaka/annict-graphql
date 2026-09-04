@@ -103,3 +103,32 @@ describe("User.works", () => {
     expect(await user.works({ username: "testuser", first: 1 })).toEqual([mockWork]);
   });
 });
+
+describe("User.programs", () => {
+  it("returns programs", async () => {
+    const mockProgram = {
+      id: "UHJvZ3JhbS0x",
+      annictId: 1,
+      startedAt: "2020-01-01T00:00:00Z",
+      state: "PUBLISHED",
+      rebroadcast: false,
+      episode: {
+        id: "RXBpc29kZS0x",
+        annictId: 1,
+        title: "Episode 1",
+        number: 1,
+        numberText: "第1話",
+      },
+      work: { id: "V29yay0x", annictId: 1, title: "Test Work" },
+      channel: { id: "Q2hhbm5lbC0x", annictId: 1, name: "Test Channel" },
+    };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      user: { programs: { edges: [{ node: mockProgram }] } },
+    });
+
+    const result = await createUserResource(client).programs({ username: "testuser", first: 1 });
+
+    expect(result).toEqual([mockProgram]);
+  });
+});

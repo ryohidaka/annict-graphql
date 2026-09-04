@@ -45,6 +45,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 | `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
 | `User.records()`                | [get-user-records.ts](./examples/get-user-records.ts)         |
 | `User.works()`                  | [get-user-works.ts](./examples/get-user-works.ts)             |
+| `User.programs()`               | [get-user-programs.ts](./examples/get-user-programs.ts)       |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |
 | `Work.search()`                 | [search-works.ts](./examples/search-works.ts)                 |
 | `Episode.search()`              | [search-episodes.ts](./examples/search-episodes.ts)           |

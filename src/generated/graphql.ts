@@ -799,6 +799,41 @@ export type UserWorksQuery = {
   } | null;
 };
 
+export type UserProgramsQueryVariables = Exact<{
+  username: string;
+  unwatched?: boolean | null | undefined;
+  orderBy?: Types.ProgramOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type UserProgramsQuery = {
+  user: {
+    programs: {
+      edges: Array<{
+        node: {
+          id: string;
+          annictId: number;
+          startedAt: string;
+          state: Types.ProgramState;
+          rebroadcast: boolean;
+          episode: {
+            id: string;
+            annictId: number;
+            title: string | null;
+            number: number | null;
+            numberText: string | null;
+          };
+          work: { id: string; annictId: number; title: string };
+          channel: { id: string; annictId: number; name: string };
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ViewerQuery = {
