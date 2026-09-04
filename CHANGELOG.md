@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.15
+
+### Minor Changes
+
+- [`254972e`](https://github.com/ryohidaka/annict-graphql/commit/254972eb2af899c441e7e3b7b8fa8f3ff4a74436) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `Viewer.library()` and `User.library()` for fetching library entries.
+
 ## 1.0.0-beta.14
 
 ### Minor Changes
