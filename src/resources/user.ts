@@ -15,6 +15,8 @@ import type {
   UserProgramsQuery,
   UserProgramsQueryVariables,
   ProgramFieldsFragment,
+  UserFollowersQuery,
+  UserFollowersQueryVariables,
 } from "@/generated/graphql";
 import type {
   LibraryEntryOrderField,
@@ -37,6 +39,29 @@ const USER_QUERY = /* GraphQL */ `
   query User($username: String!) {
     user(username: $username) {
       ...UserFields
+    }
+  }
+`;
+
+const USER_FOLLOWERS_QUERY = /* GraphQL */ `
+  query UserFollowers(
+    $username: String!
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    user(username: $username) {
+      followers(after: $after, before: $before, first: $first, last: $last) {
+        edges {
+          node {
+            id
+            annictId
+            name
+            username
+          }
+        }
+      }
     }
   }
 `;
@@ -180,6 +205,14 @@ export interface UserParams {
   username: string;
 }
 
+export interface UserFollowersParams {
+  username: string;
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
 export interface UserLibraryParams {
   username: string;
   states?: StatusState[];
@@ -238,6 +271,20 @@ export const createUserResource = (client: GraphQLClient) => ({
     const variables: UserQueryVariables = { username: params.username };
     const { user } = await client.request<UserQuery>(USER_QUERY, variables);
     return user ?? null;
+  },
+
+  /**
+   * Gets a user's followers.
+   *
+   * @param params - Username and pagination options
+   * @returns The user's followers
+   */
+  async followers(params: UserFollowersParams) {
+    const variables: UserFollowersQueryVariables = params;
+    const { user } = await client.request<UserFollowersQuery>(USER_FOLLOWERS_QUERY, variables);
+    return (user?.followers?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((follower) => follower != null);
   },
 
   /**

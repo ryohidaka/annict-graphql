@@ -50,6 +50,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 - [`User.records()`](./examples/get-user-records.ts)
 - [`User.works()`](./examples/get-user-works.ts)
 - [`User.programs()`](./examples/get-user-programs.ts)
+- [`User.followers()`](./examples/get-user-followers.ts)
 
 ### Search and node lookup
 

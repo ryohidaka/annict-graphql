@@ -6,6 +6,7 @@ export type { ViewerWorksParams } from "@/resources/viewer";
 export type { ViewerProgramsParams } from "@/resources/viewer";
 export type { ViewerFollowParams } from "@/resources/viewer";
 export type { AnnictUser } from "@/resources/user";
+export type { UserFollowersParams } from "@/resources/user";
 export type { UserRecordsParams } from "@/resources/user";
 export type { UserWorksParams } from "@/resources/user";
 export type { UserLibraryParams } from "@/resources/user";
