@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.19
+
+### Minor Changes
+
+- [`78f2312`](https://github.com/ryohidaka/annict-graphql/commit/78f2312a932a30d3756c5e02d459478d4020494c) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `followers()` and `following()` resources for viewers and users.
+
 ## 1.0.0-beta.18
 
 ### Patch Changes
