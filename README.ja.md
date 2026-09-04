@@ -38,6 +38,7 @@ console.log(`${viewer.name} (@${viewer.username})`);
 | ------------------------------- | ------------------------------------------------------------- |
 | `Viewer.get()`                  | [get-viewer.ts](./examples/get-viewer.ts)                     |
 | `Viewer.library()`              | [get-viewer-library.ts](./examples/get-viewer-library.ts)     |
+| `Viewer.records()`              | [get-viewer-records.ts](./examples/get-viewer-records.ts)     |
 | `User.get()`                    | [get-user.ts](./examples/get-user.ts)                         |
 | `User.library()`                | [get-user-library.ts](./examples/get-user-library.ts)         |
 | `Node.get()` / `Node.getMany()` | [get-node.ts](./examples/get-node.ts)                         |

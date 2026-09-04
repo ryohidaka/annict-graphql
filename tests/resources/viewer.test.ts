@@ -77,3 +77,17 @@ describe("Viewer.library", () => {
     expect(result).toEqual([mockEntry]);
   });
 });
+
+describe("Viewer.records", () => {
+  it("returns a flat list of records", async () => {
+    const mockRecord = { id: "UmVjb3JkLTE=", comment: "Great episode", ratingState: "GREAT" };
+    const client = new GraphQLClient("https://api.annict.com/graphql");
+    vi.spyOn(client, "request").mockResolvedValue({
+      viewer: { records: { edges: [{ node: mockRecord }] } },
+    });
+
+    const result = await createViewerResource(client).records({ first: 1 });
+
+    expect(result).toEqual([mockRecord]);
+  });
+});

@@ -50,6 +50,13 @@ export type PersonOrderField = "CREATED_AT" | "FAVORITE_PEOPLE_COUNT";
 
 export type RatingState = "AVERAGE" | "BAD" | "GOOD" | "GREAT";
 
+export type RecordOrder = {
+  direction: OrderDirection;
+  field: RecordOrderField;
+};
+
+export type RecordOrderField = "CREATED_AT" | "LIKES_COUNT";
+
 /** Season name */
 export type SeasonName = "AUTUMN" | "SPRING" | "SUMMER" | "WINTER";
 
@@ -744,6 +751,38 @@ export type ViewerLibraryQuery = {
             numberText: string | null;
           } | null;
           nextProgram: { id: string } | null;
+        } | null;
+      } | null> | null;
+    } | null;
+  } | null;
+};
+
+export type ViewerRecordsQueryVariables = Exact<{
+  hasComment?: boolean | null | undefined;
+  orderBy?: Types.RecordOrder | null | undefined;
+  after?: string | null | undefined;
+  before?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+}>;
+
+export type ViewerRecordsQuery = {
+  viewer: {
+    records: {
+      edges: Array<{
+        node: {
+          id: string;
+          annictId: number;
+          comment: string | null;
+          commentsCount: number;
+          rating: number | null;
+          ratingState: Types.RatingState | null;
+          likesCount: number;
+          facebookClickCount: number;
+          twitterClickCount: number;
+          modified: boolean;
+          createdAt: string;
+          updatedAt: string;
         } | null;
       } | null> | null;
     } | null;

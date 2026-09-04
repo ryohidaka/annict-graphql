@@ -5,9 +5,21 @@ import type {
   ViewerLibraryQuery,
   ViewerLibraryQueryVariables,
   LibraryEntryFieldsFragment,
+  ViewerRecordsQuery,
+  ViewerRecordsQueryVariables,
+  RecordFieldsFragment,
 } from "@/generated/graphql";
-import type { LibraryEntryOrderField, OrderDirection, StatusState } from "@/generated/types";
-import { LIBRARY_ENTRY_FIELDS_FRAGMENT, USER_FIELDS_FRAGMENT } from "./fragments";
+import type {
+  LibraryEntryOrderField,
+  OrderDirection,
+  RecordOrderField,
+  StatusState,
+} from "@/generated/types";
+import {
+  LIBRARY_ENTRY_FIELDS_FRAGMENT,
+  RECORD_FIELDS_FRAGMENT,
+  USER_FIELDS_FRAGMENT,
+} from "./fragments";
 
 const VIEWER_QUERY = /* GraphQL */ `
   ${USER_FIELDS_FRAGMENT}
@@ -53,6 +65,35 @@ const VIEWER_LIBRARY_QUERY = /* GraphQL */ `
   }
 `;
 
+const VIEWER_RECORDS_QUERY = /* GraphQL */ `
+  ${RECORD_FIELDS_FRAGMENT}
+  query ViewerRecords(
+    $hasComment: Boolean
+    $orderBy: RecordOrder
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    viewer {
+      records(
+        hasComment: $hasComment
+        orderBy: $orderBy
+        after: $after
+        before: $before
+        first: $first
+        last: $last
+      ) {
+        edges {
+          node {
+            ...RecordFields
+          }
+        }
+      }
+    }
+  }
+`;
+
 export type AnnictViewer = UserFieldsFragment;
 
 export interface ViewerLibraryParams {
@@ -61,6 +102,15 @@ export interface ViewerLibraryParams {
   seasonFrom?: string;
   seasonUntil?: string;
   orderBy?: { field: LibraryEntryOrderField; direction: OrderDirection };
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+}
+
+export interface ViewerRecordsParams {
+  hasComment?: boolean;
+  orderBy?: { field: RecordOrderField; direction: OrderDirection };
   after?: string;
   before?: string;
   first?: number;
@@ -95,5 +145,20 @@ export const createViewerResource = (client: GraphQLClient) => ({
     return (viewer?.libraryEntries?.edges ?? [])
       .map((edge) => edge?.node)
       .filter((entry): entry is LibraryEntryFieldsFragment => entry != null);
+  },
+
+  /**
+   * Gets records for the authenticated user.
+   *
+   * @param params - Record filters, sorting, and pagination options
+   * @returns Matching records
+   * @see https://developers.annict.com/docs/graphql-api/beta/reference/objects/record
+   */
+  async records(params: ViewerRecordsParams = {}): Promise<RecordFieldsFragment[]> {
+    const variables: ViewerRecordsQueryVariables = params;
+    const { viewer } = await client.request<ViewerRecordsQuery>(VIEWER_RECORDS_QUERY, variables);
+    return (viewer?.records?.edges ?? [])
+      .map((edge) => edge?.node)
+      .filter((record): record is RecordFieldsFragment => record != null);
   },
 });
