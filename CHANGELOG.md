@@ -1,5 +1,11 @@
 # annict-graphql
 
+## 1.0.0-beta.17
+
+### Minor Changes
+
+- [`72d7cbc`](https://github.com/ryohidaka/annict-graphql/commit/72d7cbc6fa1d97b4b483693ce74e0abeb1d04aaf) Thanks [@ryohidaka](https://github.com/ryohidaka)! - Add `works()` and `programs()` resources for viewers and users.
+
 ## 1.0.0-beta.16
 
 ### Minor Changes
